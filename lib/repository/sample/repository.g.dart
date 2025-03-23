@@ -22,23 +22,23 @@ final sampleRepoProvider = AutoDisposeProvider<SampleRepo>.internal(
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef SampleRepoRef = AutoDisposeProviderRef<SampleRepo>;
-String _$postRepoCasheHash() => r'cb59b1e88cb2e45799072765f91ef85ef0b78aa5';
+String _$sampleRepoCasheHash() => r'53f41d21fb0abbe233949cd9901a2d6f2da15f5c';
 
 /// キャッシュするためのProvider
 ///
-/// Copied from [PostRepoCashe].
-@ProviderFor(PostRepoCashe)
-final postRepoCasheProvider =
-    NotifierProvider<PostRepoCashe, Map<String, SampleEntity>>.internal(
-  PostRepoCashe.new,
-  name: r'postRepoCasheProvider',
+/// Copied from [SampleRepoCashe].
+@ProviderFor(SampleRepoCashe)
+final sampleRepoCasheProvider =
+    NotifierProvider<SampleRepoCashe, Map<String, SampleEntity>>.internal(
+  SampleRepoCashe.new,
+  name: r'sampleRepoCasheProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$postRepoCasheHash,
+      : _$sampleRepoCasheHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$PostRepoCashe = Notifier<Map<String, SampleEntity>>;
+typedef _$SampleRepoCashe = Notifier<Map<String, SampleEntity>>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

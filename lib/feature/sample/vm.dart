@@ -42,4 +42,17 @@ class SampleVM extends _$SampleVM {
     );
     await postRepo.createPost(post);
   }
+
+  void updatePosts() async {
+    final repo = ref.read(sampleRepoProvider);
+    final result = await repo.readPosts();
+    switch (result) {
+      case Ok(:final value):
+        state = AsyncData(state.value?.copyWith(sampleEntity: value));
+        break;
+      case Error():
+        state = AsyncData(state.value?.copyWith(sampleEntity: null));
+        break;
+    }
+  }
 }

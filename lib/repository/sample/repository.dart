@@ -18,7 +18,7 @@ SampleRepo sampleRepo(Ref ref) => SampleRepo(
 
 /// キャッシュするためのProvider
 @Riverpod(keepAlive: true)
-class PostRepoCashe extends _$PostRepoCashe {
+class SampleRepoCashe extends _$SampleRepoCashe {
   @override
   Map<String, SampleEntity> build() => {};
   void update(String id, SampleEntity post) {
@@ -42,7 +42,7 @@ class SampleRepo {
   /// read(読み取るメソッド)[postId]で投稿のキャッシュを探索できる
   Future<Result<List<SampleEntity>>> readPosts(
       {bool shouldRefresh = false, String? postId}) async {
-    final cacheData = _ref.read(postRepoCasheProvider)[postId];
+    final cacheData = _ref.read(sampleRepoCasheProvider)[postId];
     final useCache = !shouldRefresh && cacheData != null;
     if (useCache) {
       return Result.ok([cacheData]);
@@ -53,7 +53,7 @@ class SampleRepo {
     switch (result) {
       case Ok(:final value):
         for (var post in value) {
-          _ref.read(postRepoCasheProvider.notifier).update(post.postId, post);
+          _ref.read(sampleRepoCasheProvider.notifier).update(post.postId, post);
         }
         return Result.ok(value);
       case Error():
@@ -73,7 +73,7 @@ class SampleRepo {
 
     switch (result) {
       case Ok(:final value):
-        _ref.read(postRepoCasheProvider.notifier).update(post.postId, post);
+        _ref.read(sampleRepoCasheProvider.notifier).update(post.postId, post);
         return Result.ok(value);
       case Error():
         return Result.error(result.error);
