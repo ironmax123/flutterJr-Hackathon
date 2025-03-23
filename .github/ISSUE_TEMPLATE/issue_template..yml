@@ -1,0 +1,34 @@
+name: "Isuue作成"
+description: "Isuueを作成してください。"
+title: "Issue内容"
+labels: ["enhancement"]
+
+body:
+  - type: textarea
+    id: background
+    attributes:
+      label: 背景
+      description: 新機能またはリクエストの背景を詳しく記載してください。
+      placeholder: 背景を記載してください
+
+  - type: textarea
+    id: acceptance_criteria
+    attributes:
+      label: 受入条件
+      description: 受入条件をチェックリスト形式で記入してください。
+      value: |
+        - [ ] 条件1
+
+  - type: textarea
+    id: screen_shots
+    attributes:
+      label: スクリーンショット
+      description: スクリーンショットを添付してください。
+      placeholder: スクリーンショットを添付
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: 備考
+      description: 必要に応じて追加の項目を記載してください。
+      placeholder: 備考を記載してください
