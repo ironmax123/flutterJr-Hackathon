@@ -3,6 +3,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:room_check/feature/sample/view.dart';
 import 'package:room_check/main.dart';
 
+/// flutter run --target lib/sample_main.dart
 Future<void> main() async {
   await mainCommonMethod();
   runApp(
