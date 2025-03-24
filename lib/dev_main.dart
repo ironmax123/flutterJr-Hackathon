@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:room_check/feature/sample/view.dart';
+import 'package:room_check/feature/home/view.dart';
 
 /// flutter run --target lib/dev_main.dart
 Future<void> main() async {
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: true,
       ),
-      home: const SampleScreen(),
+      home: const HomeScreen(),
     );
   }
 }
