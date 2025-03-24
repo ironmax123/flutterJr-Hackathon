@@ -1,6 +1,25 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
+/// ユーザーアイコン
+///
+/// [imageUrl] 画像URL
+/// [width] 幅
+/// [heigt] 高さ
+/// [onTap] タップ時の処理 なにも処理しない場合null
+///
+///使用方法：
+///
+/// ```dart
+/// PrimaryUserIcon(
+///  imageUrl: imageUrl, //画像のURL
+///     width: 48,
+///    heigt: 48,
+///   onTap: () {
+///   // タップ時の処理
+///   },
+/// )
+/// ```
 class PrimaryUserIcon extends StatelessWidget {
   final String imageUrl;
   final double width;
@@ -23,7 +42,7 @@ class PrimaryUserIcon extends StatelessWidget {
           onTap: onTap,
           borderRadius: BorderRadius.circular(27),
           child: imageUrl == "null" || imageUrl.isEmpty
-              ? const Icon(Icons.account_circle, size: 48)
+              ? Icon(Icons.account_circle, size: width)
               : CachedNetworkImage(
                   imageUrl: imageUrl,
                   width: width,

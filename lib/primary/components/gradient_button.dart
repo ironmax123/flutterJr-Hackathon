@@ -1,6 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:room_check/primary/utils/color.dart';
 
+/// グラデーションボタン
+/// [outlineColor]外側の線の色
+/// [gradient]グラデーションの色
+/// [text]ボタンのテキスト
+/// [onPressed]ボタンを押した時の処理
+///
+/// 使い方:
+///
+/// ```dart
+/// PrimaryGradientButton(
+///   outlineColor: AppColor.primaryBlack,
+///   gradient: GradientStyle.blueGradient,
+///   text: 'Press Me',
+///   onPressed: () {
+///     print('Button Pressed');
+///   },
+/// )
+/// ```
+///
 class PrimaryGradientButton extends StatelessWidget {
   final Color outlineColor;
   final Gradient gradient;
