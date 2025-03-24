@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:room_check/feature/sample/view.dart';
 import 'package:room_check/main.dart';
+import 'package:room_check/primary/utils/color.dart';
 
 /// flutter run --target lib/sample_main.dart
 Future<void> main() async {
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(
         useMaterial3: true,
+        scaffoldBackgroundColor: AppColor.primaryWhite,
       ),
       home: const SampleScreen(),
     );
