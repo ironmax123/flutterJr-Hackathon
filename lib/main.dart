@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:room_check/primary/utils/color.dart';
 import 'package:room_check/routers/router.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
       routerConfig: goRouter,
       theme: ThemeData(
         useMaterial3: true,
-        scaffoldBackgroundColor: Colors.white,
+        scaffoldBackgroundColor: AppColor.primaryWhite,
       ),
     );
   }
