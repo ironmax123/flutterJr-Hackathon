@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         scaffoldBackgroundColor: AppColor.primaryWhite,
       ),
-      home: const InvationScreen(),
+      home: HomeScreen(cameras: camera),
     );
   }
 }
