@@ -21,17 +21,22 @@ class CameraTestPage extends HookWidget {
     final _controller = useState<CameraController?>(null);
     var image = useState<XFile?>(null);
     final _initializeControllerFuture = useState<Future<void>?>(null);
+    print(cameras.map((c) => c.lensDirection).toList()); // ログ出力
+    print(cameras.map((c) => c.name).toList()); // カメラの名称も出力
 
-    void cameraValue(int i) {
+    void cameraValue(int i) async {
+      await _controller.value?.dispose();
       _controller.value = CameraController(
         // カメラを指定
         cameras[i],
         // 解像度を定義
         ResolutionPreset.medium,
       );
-
       // コントローラーを初期化
       _initializeControllerFuture.value = _controller.value!.initialize();
+
+      // await _controller.value!.initialize();
+      // await _controller.value!.setZoomLevel(i.toDouble());
     }
 
     useEffect(() {
@@ -41,7 +46,7 @@ class CameraTestPage extends HookWidget {
 
     return Scaffold(
         appBar: AppBar(title: const Text('カメラ切り替えテスト')),
-        body: Column(
+        body: ListView(
           children: [
             (imagePath.value != null)
                 ? Image.file(File(imagePath.value!))
@@ -54,11 +59,25 @@ class CameraTestPage extends HookWidget {
                       )
                     : Container(),
             const Gap(16),
-            ElevatedButton(
-                onPressed: () {
-                  cameraValue(1);
+            SizedBox(
+              height: 100,
+              child: ListView.builder(
+                itemCount: cameras.length,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
+                    child: IntrinsicHeight(
+                      // 子要素の高さに合わせる
+                      child: ElevatedButton(
+                        onPressed: () => cameraValue(index),
+                        child: Text('$index に切り替え'),
+                      ),
+                    ),
+                  );
                 },
-                child: const Text('1に切り替え')),
+              ),
+            ),
             const Gap(16),
             ElevatedButton(
               onPressed: () async {
