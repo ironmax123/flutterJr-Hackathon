@@ -41,6 +41,7 @@ dependencies:
 
   cupertino_icons: ^1.0.8
   qr_flutter: ^4.1.0
+  camera: ^0.11.1
 
 dev_dependencies:
   flutter_test:

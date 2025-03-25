@@ -44,6 +44,13 @@
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
+	
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>写真撮影のためにカメラにアクセスします</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>カメラ使用のためマイクにアクセスします</string>
+</dict>
+</plist>
 </dict>
 </plist>
