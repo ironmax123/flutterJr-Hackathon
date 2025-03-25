@@ -25,11 +25,15 @@ class PrimaryGradientButton extends StatelessWidget {
   final Gradient gradient;
   final String text;
   final VoidCallback? onPressed;
+  final double fontSize;
+  final double horizontal;
   const PrimaryGradientButton({
     super.key,
     required this.outlineColor,
     required this.gradient,
     required this.text,
+    this.fontSize = 24,
+    this.horizontal = 50,
     this.onPressed,
   });
 
@@ -50,15 +54,15 @@ class PrimaryGradientButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(50),
         ),
         child: Container(
-          padding: const EdgeInsets.symmetric(
+          padding: EdgeInsets.symmetric(
             vertical: 10,
-            horizontal: 50,
+            horizontal: horizontal,
           ),
           child: Text(
             text,
-            style: const TextStyle(
+            style: TextStyle(
               color: AppColor.primaryWhite,
-              fontSize: 24,
+              fontSize: fontSize,
               fontWeight: FontWeight.bold,
             ),
             textAlign: TextAlign.center,

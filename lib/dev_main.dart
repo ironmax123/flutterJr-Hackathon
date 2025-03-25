@@ -13,8 +13,8 @@ Future<void> main() async {
   // デバイスで使用可能なカメラのリストを取得
   final cameras = await availableCameras();
 
-  // 利用可能なカメラのリストから特定のカメラを取得
-  final firstCamera = cameras.first;
+  // // 利用可能なカメラのリストから特定のカメラを取得
+  // final firstCamera = cameras.first;
   runApp(
     ProviderScope(
         child: MyApp(
@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         scaffoldBackgroundColor: AppColor.primaryWhite,
       ),
-      home: CameraTestPage(cameras: camera),
+      home: const InvationScreen(),
     );
   }
 }

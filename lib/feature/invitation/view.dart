@@ -11,7 +11,18 @@ class InvationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(backgroundColor: AppColor.primaryWhiteGrey),
+      appBar: AppBar(
+        backgroundColor: AppColor.primaryWhiteGrey,
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(
+              Icons.logout,
+              size: 48,
+            ),
+          )
+        ],
+      ),
       body: ListView(
         children: [
           const InvationScreenProfile(
