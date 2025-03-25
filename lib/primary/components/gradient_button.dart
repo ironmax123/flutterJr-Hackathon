@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:room_check/primary/utils/color.dart';
 
 /// グラデーションボタン
@@ -27,6 +28,7 @@ class PrimaryGradientButton extends StatelessWidget {
   final VoidCallback? onPressed;
   final double fontSize;
   final double horizontal;
+  final Icon? icon;
   const PrimaryGradientButton({
     super.key,
     required this.outlineColor,
@@ -35,6 +37,7 @@ class PrimaryGradientButton extends StatelessWidget {
     this.fontSize = 24,
     this.horizontal = 50,
     this.onPressed,
+    this.icon,
   });
 
   @override
@@ -58,14 +61,23 @@ class PrimaryGradientButton extends StatelessWidget {
             vertical: 10,
             horizontal: horizontal,
           ),
-          child: Text(
-            text,
-            style: TextStyle(
-              color: AppColor.primaryWhite,
-              fontSize: fontSize,
-              fontWeight: FontWeight.bold,
-            ),
-            textAlign: TextAlign.center,
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              if (icon != null) ...[
+                icon!,
+                const Gap(40),
+              ],
+              Text(
+                text,
+                style: TextStyle(
+                  color: AppColor.primaryWhite,
+                  fontSize: fontSize,
+                  fontWeight: FontWeight.bold,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ],
           ),
         ),
       ),
