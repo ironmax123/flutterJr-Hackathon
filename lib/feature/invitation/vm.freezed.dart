@@ -15,20 +15,21 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$HomeState {
+mixin _$InvitationState {
   UserEntity? get userEntity => throw _privateConstructorUsedError;
 
-  /// Create a copy of HomeState
+  /// Create a copy of InvitationState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $HomeStateCopyWith<HomeState> get copyWith =>
+  $InvitationStateCopyWith<InvitationState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $HomeStateCopyWith<$Res> {
-  factory $HomeStateCopyWith(HomeState value, $Res Function(HomeState) then) =
-      _$HomeStateCopyWithImpl<$Res, HomeState>;
+abstract class $InvitationStateCopyWith<$Res> {
+  factory $InvitationStateCopyWith(
+          InvitationState value, $Res Function(InvitationState) then) =
+      _$InvitationStateCopyWithImpl<$Res, InvitationState>;
   @useResult
   $Res call({UserEntity? userEntity});
 
@@ -36,16 +37,16 @@ abstract class $HomeStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
-    implements $HomeStateCopyWith<$Res> {
-  _$HomeStateCopyWithImpl(this._value, this._then);
+class _$InvitationStateCopyWithImpl<$Res, $Val extends InvitationState>
+    implements $InvitationStateCopyWith<$Res> {
+  _$InvitationStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of HomeState
+  /// Create a copy of InvitationState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -60,7 +61,7 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
     ) as $Val);
   }
 
-  /// Create a copy of HomeState
+  /// Create a copy of InvitationState
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
@@ -76,11 +77,11 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
 }
 
 /// @nodoc
-abstract class _$$HomeStateImplCopyWith<$Res>
-    implements $HomeStateCopyWith<$Res> {
-  factory _$$HomeStateImplCopyWith(
-          _$HomeStateImpl value, $Res Function(_$HomeStateImpl) then) =
-      __$$HomeStateImplCopyWithImpl<$Res>;
+abstract class _$$InvitationStateImplCopyWith<$Res>
+    implements $InvitationStateCopyWith<$Res> {
+  factory _$$InvitationStateImplCopyWith(_$InvitationStateImpl value,
+          $Res Function(_$InvitationStateImpl) then) =
+      __$$InvitationStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({UserEntity? userEntity});
@@ -90,21 +91,21 @@ abstract class _$$HomeStateImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$HomeStateImplCopyWithImpl<$Res>
-    extends _$HomeStateCopyWithImpl<$Res, _$HomeStateImpl>
-    implements _$$HomeStateImplCopyWith<$Res> {
-  __$$HomeStateImplCopyWithImpl(
-      _$HomeStateImpl _value, $Res Function(_$HomeStateImpl) _then)
+class __$$InvitationStateImplCopyWithImpl<$Res>
+    extends _$InvitationStateCopyWithImpl<$Res, _$InvitationStateImpl>
+    implements _$$InvitationStateImplCopyWith<$Res> {
+  __$$InvitationStateImplCopyWithImpl(
+      _$InvitationStateImpl _value, $Res Function(_$InvitationStateImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of HomeState
+  /// Create a copy of InvitationState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? userEntity = freezed,
   }) {
-    return _then(_$HomeStateImpl(
+    return _then(_$InvitationStateImpl(
       userEntity: freezed == userEntity
           ? _value.userEntity
           : userEntity // ignore: cast_nullable_to_non_nullable
@@ -115,23 +116,22 @@ class __$$HomeStateImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-@override
-class _$HomeStateImpl implements _HomeState {
-  const _$HomeStateImpl({required this.userEntity});
+class _$InvitationStateImpl implements _InvitationState {
+  const _$InvitationStateImpl({required this.userEntity});
 
   @override
   final UserEntity? userEntity;
 
   @override
   String toString() {
-    return 'HomeState(userEntity: $userEntity)';
+    return 'InvitationState(userEntity: $userEntity)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$HomeStateImpl &&
+            other is _$InvitationStateImpl &&
             (identical(other.userEntity, userEntity) ||
                 other.userEntity == userEntity));
   }
@@ -139,26 +139,27 @@ class _$HomeStateImpl implements _HomeState {
   @override
   int get hashCode => Object.hash(runtimeType, userEntity);
 
-  /// Create a copy of HomeState
+  /// Create a copy of InvitationState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$HomeStateImplCopyWith<_$HomeStateImpl> get copyWith =>
-      __$$HomeStateImplCopyWithImpl<_$HomeStateImpl>(this, _$identity);
+  _$$InvitationStateImplCopyWith<_$InvitationStateImpl> get copyWith =>
+      __$$InvitationStateImplCopyWithImpl<_$InvitationStateImpl>(
+          this, _$identity);
 }
 
-abstract class _HomeState implements HomeState {
-  const factory _HomeState({required final UserEntity? userEntity}) =
-      _$HomeStateImpl;
+abstract class _InvitationState implements InvitationState {
+  const factory _InvitationState({required final UserEntity? userEntity}) =
+      _$InvitationStateImpl;
 
   @override
   UserEntity? get userEntity;
 
-  /// Create a copy of HomeState
+  /// Create a copy of InvitationState
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$HomeStateImplCopyWith<_$HomeStateImpl> get copyWith =>
+  _$$InvitationStateImplCopyWith<_$InvitationStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

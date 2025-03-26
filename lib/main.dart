@@ -2,7 +2,6 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:room_check/feature/home/view.dart';
 import 'package:room_check/primary/utils/color.dart';
 import 'package:room_check/routers/router.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';

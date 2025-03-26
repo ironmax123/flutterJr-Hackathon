@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:room_check/feature/invitation/components/update_profile.dart';
 import 'package:room_check/primary/components/gradient_button.dart';
 import 'package:room_check/primary/components/user_icon.dart';
 import 'package:room_check/primary/utils/color.dart';
 import 'package:room_check/primary/utils/gradient_style.dart';
 
 class InvationScreenProfile extends StatelessWidget {
-  final String imageUrl;
-  final String userName;
+  final String? imageUrl;
+  final String? userName;
   const InvationScreenProfile({
     super.key,
     required this.imageUrl,
@@ -23,14 +24,14 @@ class InvationScreenProfile extends StatelessWidget {
           child: Row(
             children: [
               PrimaryUserIcon(
-                imageUrl: imageUrl,
+                imageUrl: imageUrl ?? 'null',
                 width: 68,
                 heigt: 68,
                 onTap: () {},
               ),
               const Gap(24),
               Text(
-                userName,
+                userName!,
                 style: const TextStyle(
                   color: AppColor.primaryBlack,
                   fontWeight: FontWeight.bold,
@@ -48,7 +49,15 @@ class InvationScreenProfile extends StatelessWidget {
             gradient: GradientStyle.blueGradient,
             fontSize: 20,
             text: 'プロフィールを更新する',
-            onPressed: () {},
+            onPressed: () {
+              showDialog(
+                context: context,
+                barrierDismissible: false,
+                builder: (BuildContext context) => AccountUpdateProfileDialog(
+                  userName: userName,
+                ),
+              );
+            },
           ),
         ),
       ],

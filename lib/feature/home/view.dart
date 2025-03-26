@@ -1,5 +1,6 @@
 // ignore_for_file: no_leading_underscores_for_local_identifiers
 
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:camera/camera.dart';
@@ -7,12 +8,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:room_check/feature/home/components/buttons.dart';
 import 'package:room_check/feature/home/components/limit.dart';
+import 'package:room_check/feature/home/vm.dart';
 import 'package:room_check/primary/components/user_icon.dart';
+import 'package:room_check/repository/user/repo.dart';
 import 'package:room_check/test/camera/widgets/camera_preview.dart';
 
-class HomeScreen extends HookWidget {
+class HomeScreen extends HookConsumerWidget {
   final List<CameraDescription> cameras;
   const HomeScreen({
     super.key,
@@ -20,7 +24,7 @@ class HomeScreen extends HookWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final imagePath = useState<String?>(null);
     final _controller = useState<CameraController?>(null);
     var image = useState<XFile?>(null);
@@ -46,6 +50,22 @@ class HomeScreen extends HookWidget {
       cameraValue(0);
       return null;
     }, []);
+
+    final iconUrl = ref.watch(homeScreenVMProvider).when(
+          data: (data) => data.userEntity?.avatar_url,
+          loading: () => 'null',
+          error: (err, stack) {
+            log('エラー: $err');
+            return 'null';
+          },
+        );
+
+    final userProvider = ref.watch(userRepoCasheProvider);
+    useEffect(() {
+      ref.read(homeScreenVMProvider.notifier).onUserUpdated();
+      return null;
+    }, [userProvider]);
+
     return Scaffold(
       body: ListView(
         children: [
@@ -56,7 +76,7 @@ class HomeScreen extends HookWidget {
                 child: Align(
                   alignment: Alignment.centerRight,
                   child: PrimaryUserIcon(
-                    imageUrl: 'null',
+                    imageUrl: iconUrl ?? 'null',
                     onTap: () => context.push('/invitation'),
                     width: 64,
                     heigt: 64,
