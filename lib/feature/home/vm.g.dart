@@ -6,20 +6,20 @@ part of 'vm.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$sampleVMHash() => r'e663d240f266209119fc4185bc810f54154e02ff';
+String _$homeScreenVMHash() => r'6fb95386f7835094359ef73588fc13b18b6988ed';
 
-/// See also [SampleVM].
-@ProviderFor(SampleVM)
-final sampleVMProvider =
-    AutoDisposeAsyncNotifierProvider<SampleVM, SampleScreenState?>.internal(
-  SampleVM.new,
-  name: r'sampleVMProvider',
+/// See also [HomeScreenVM].
+@ProviderFor(HomeScreenVM)
+final homeScreenVMProvider =
+    AutoDisposeNotifierProvider<HomeScreenVM, void>.internal(
+  HomeScreenVM.new,
+  name: r'homeScreenVMProvider',
   debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$sampleVMHash,
+      const bool.fromEnvironment('dart.vm.product') ? null : _$homeScreenVMHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$SampleVM = AutoDisposeAsyncNotifier<SampleScreenState?>;
+typedef _$HomeScreenVM = AutoDisposeNotifier<void>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
