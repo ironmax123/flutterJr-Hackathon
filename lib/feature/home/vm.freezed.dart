@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$HomeState {
-  List<PostEntity>? get posts => throw _privateConstructorUsedError;
+  UserEntity? get userEntity => throw _privateConstructorUsedError;
 
   /// Create a copy of HomeState
   /// with the given fields replaced by the non-null parameter values.
@@ -30,7 +30,9 @@ abstract class $HomeStateCopyWith<$Res> {
   factory $HomeStateCopyWith(HomeState value, $Res Function(HomeState) then) =
       _$HomeStateCopyWithImpl<$Res, HomeState>;
   @useResult
-  $Res call({List<PostEntity>? posts});
+  $Res call({UserEntity? userEntity});
+
+  $UserEntityCopyWith<$Res>? get userEntity;
 }
 
 /// @nodoc
@@ -48,14 +50,28 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? posts = freezed,
+    Object? userEntity = freezed,
   }) {
     return _then(_value.copyWith(
-      posts: freezed == posts
-          ? _value.posts
-          : posts // ignore: cast_nullable_to_non_nullable
-              as List<PostEntity>?,
+      userEntity: freezed == userEntity
+          ? _value.userEntity
+          : userEntity // ignore: cast_nullable_to_non_nullable
+              as UserEntity?,
     ) as $Val);
+  }
+
+  /// Create a copy of HomeState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $UserEntityCopyWith<$Res>? get userEntity {
+    if (_value.userEntity == null) {
+      return null;
+    }
+
+    return $UserEntityCopyWith<$Res>(_value.userEntity!, (value) {
+      return _then(_value.copyWith(userEntity: value) as $Val);
+    });
   }
 }
 
@@ -67,7 +83,10 @@ abstract class _$$HomeStateImplCopyWith<$Res>
       __$$HomeStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<PostEntity>? posts});
+  $Res call({UserEntity? userEntity});
+
+  @override
+  $UserEntityCopyWith<$Res>? get userEntity;
 }
 
 /// @nodoc
@@ -83,13 +102,13 @@ class __$$HomeStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? posts = freezed,
+    Object? userEntity = freezed,
   }) {
     return _then(_$HomeStateImpl(
-      posts: freezed == posts
-          ? _value._posts
-          : posts // ignore: cast_nullable_to_non_nullable
-              as List<PostEntity>?,
+      userEntity: freezed == userEntity
+          ? _value.userEntity
+          : userEntity // ignore: cast_nullable_to_non_nullable
+              as UserEntity?,
     ));
   }
 }
@@ -98,22 +117,14 @@ class __$$HomeStateImplCopyWithImpl<$Res>
 
 @override
 class _$HomeStateImpl implements _HomeState {
-  const _$HomeStateImpl({required final List<PostEntity>? posts})
-      : _posts = posts;
+  const _$HomeStateImpl({required this.userEntity});
 
-  final List<PostEntity>? _posts;
   @override
-  List<PostEntity>? get posts {
-    final value = _posts;
-    if (value == null) return null;
-    if (_posts is EqualUnmodifiableListView) return _posts;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
+  final UserEntity? userEntity;
 
   @override
   String toString() {
-    return 'HomeState(posts: $posts)';
+    return 'HomeState(userEntity: $userEntity)';
   }
 
   @override
@@ -121,12 +132,12 @@ class _$HomeStateImpl implements _HomeState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$HomeStateImpl &&
-            const DeepCollectionEquality().equals(other._posts, _posts));
+            (identical(other.userEntity, userEntity) ||
+                other.userEntity == userEntity));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_posts));
+  int get hashCode => Object.hash(runtimeType, userEntity);
 
   /// Create a copy of HomeState
   /// with the given fields replaced by the non-null parameter values.
@@ -138,11 +149,11 @@ class _$HomeStateImpl implements _HomeState {
 }
 
 abstract class _HomeState implements HomeState {
-  const factory _HomeState({required final List<PostEntity>? posts}) =
+  const factory _HomeState({required final UserEntity? userEntity}) =
       _$HomeStateImpl;
 
   @override
-  List<PostEntity>? get posts;
+  UserEntity? get userEntity;
 
   /// Create a copy of HomeState
   /// with the given fields replaced by the non-null parameter values.
