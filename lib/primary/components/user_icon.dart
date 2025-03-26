@@ -36,11 +36,11 @@ class PrimaryUserIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius: BorderRadius.circular(27),
+      borderRadius: BorderRadius.circular(256),
       child: Material(
         child: InkWell(
           onTap: onTap,
-          borderRadius: BorderRadius.circular(27),
+          borderRadius: BorderRadius.circular(256),
           child: imageUrl == "null" || imageUrl.isEmpty
               ? Icon(Icons.account_circle, size: width)
               : CachedNetworkImage(

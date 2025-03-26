@@ -6,8 +6,8 @@ import 'package:room_check/primary/utils/color.dart';
 import 'package:room_check/primary/utils/gradient_style.dart';
 
 class InvationScreenProfile extends StatelessWidget {
-  final String imageUrl;
-  final String userName;
+  final String? imageUrl;
+  final String? userName;
   const InvationScreenProfile({
     super.key,
     required this.imageUrl,
@@ -23,14 +23,14 @@ class InvationScreenProfile extends StatelessWidget {
           child: Row(
             children: [
               PrimaryUserIcon(
-                imageUrl: imageUrl,
+                imageUrl: imageUrl ?? 'null',
                 width: 68,
                 heigt: 68,
                 onTap: () {},
               ),
               const Gap(24),
               Text(
-                userName,
+                userName!,
                 style: const TextStyle(
                   color: AppColor.primaryBlack,
                   fontWeight: FontWeight.bold,
