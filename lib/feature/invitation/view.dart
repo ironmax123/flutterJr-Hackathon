@@ -5,8 +5,8 @@ import 'package:room_check/feature/invitation/components/user_info.dart';
 import 'package:room_check/primary/utils/color.dart';
 import 'package:room_check/supabase/supabase.dart';
 
-class InvitionScreen extends StatelessWidget {
-  const InvitionScreen({super.key});
+class InvitationScreen extends StatelessWidget {
+  const InvitationScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
