@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:room_check/feature/invitation/components/add_friend.dart';
+import 'package:room_check/feature/invitation/components/dialog.dart';
 import 'package:room_check/feature/invitation/components/friend_list.dart';
 import 'package:room_check/feature/invitation/components/user_info.dart';
 import 'package:room_check/primary/utils/color.dart';
@@ -15,7 +16,20 @@ class InvationScreen extends StatelessWidget {
         backgroundColor: AppColor.primaryWhiteGrey,
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              showConfirmDialog(
+                context,
+                // 好きな文字列を入れてください。
+                title: 'タイトル',
+                // 好きな文字列を入れてください。
+                content: 'テキストテキストテキストテキストテキストテキストテキストテキスト',
+                onApproved: () {
+                  // はい が押された時の処理を入れる。
+                  // 以下は例
+                  Navigator.of(context).pop();
+                },
+              );
+            },
             icon: const Icon(
               Icons.logout,
               size: 48,
