@@ -74,7 +74,7 @@ class LoginPageCard extends HookWidget {
                     if (mail.value.isNotEmpty || pass.value.isNotEmpty) {
                       isLogin.value =
                           await loginWithPassword(mail.value, pass.value);
-                      if (isLogin.value.isNotEmpty || isLogin.value == 'ok') {
+                      if (isLogin.value == 'ok') {
                         // ignore: use_build_context_synchronously
                         context.go('/home');
                       } else {

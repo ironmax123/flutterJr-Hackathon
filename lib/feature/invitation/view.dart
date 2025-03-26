@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:room_check/feature/invitation/components/add_friend.dart';
 import 'package:room_check/feature/invitation/components/friend_list.dart';
 import 'package:room_check/feature/invitation/components/user_info.dart';
 import 'package:room_check/primary/utils/color.dart';
 import 'package:room_check/supabase/supabase.dart';
 
-class InvitationScreen extends StatelessWidget {
+class InvitationScreen extends HookWidget {
   const InvitationScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    useEffect(() {
+      refreshAuthSession();
+      return null;
+    }, []);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColor.primaryWhiteGrey,

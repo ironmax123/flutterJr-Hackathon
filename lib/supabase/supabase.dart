@@ -5,3 +5,7 @@ final supabase = Supabase.instance.client;
 
 /// userの情報
 User? user = Supabase.instance.client.auth.currentUser;
+
+Future<void> refreshAuthSession() async {
+  await Supabase.instance.client.auth.refreshSession();
+}

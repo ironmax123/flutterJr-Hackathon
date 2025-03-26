@@ -1,8 +1,7 @@
 import 'dart:developer';
 
+import 'package:room_check/supabase/supabase.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-
-import '../../supabase/supabase.dart';
 
 Future<void> signUp(
   String email,
@@ -11,7 +10,7 @@ Future<void> signUp(
   String? imageUrl,
 ) async {
   try {
-    await supabase.auth.signUp(
+    final response = await supabase.auth.signUp(
       email: email,
       password: password,
       data: {
@@ -19,6 +18,11 @@ Future<void> signUp(
         'avatar_url': imageUrl,
       },
     );
+    final userInfo = response.user;
+    final uid = userInfo?.id;
+    await supabase.from('friend').insert({
+      'id': uid.toString(),
+    }).select();
   } on AuthException catch (error) {
     log('エラー：$error');
     return;
