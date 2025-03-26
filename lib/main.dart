@@ -34,14 +34,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      routerConfig: goRouter,
+      routerConfig: goRouter(camera),
       theme: ThemeData(
         useMaterial3: true,
         scaffoldBackgroundColor: AppColor.primaryWhite,
       ),
-      builder: (context, child) {
-        return HomeScreen(cameras: camera);
-      },
     );
   }
 }

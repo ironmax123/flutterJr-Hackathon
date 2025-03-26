@@ -46,6 +46,7 @@ class InvationScreenProfile extends StatelessWidget {
           child: PrimaryGradientButton(
             outlineColor: AppColor.primaryBlack,
             gradient: GradientStyle.blueGradient,
+            fontSize: 20,
             text: 'プロフィールを更新する',
             onPressed: () {},
           ),
