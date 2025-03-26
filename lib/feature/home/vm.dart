@@ -48,4 +48,19 @@ class HomeScreenVM extends _$HomeScreenVM {
     );
     await postRepo.createPost(post);
   }
+
+  Future<void> onUserUpdated() async {
+    final userId = user!.id;
+    final userRepo = ref.read(userRepoProvider);
+
+    final userInfo = await userRepo.getUser(userId);
+    switch (userInfo) {
+      case Ok(:final value):
+        state = AsyncData(state.value!.copyWith(userEntity: value));
+        break;
+      case Error():
+        // エラー時は何もしない
+        break;
+    }
+  }
 }

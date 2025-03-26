@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:room_check/feature/invitation/components/update_profile.dart';
 import 'package:room_check/primary/components/gradient_button.dart';
 import 'package:room_check/primary/components/user_icon.dart';
 import 'package:room_check/primary/utils/color.dart';
@@ -48,7 +49,15 @@ class InvationScreenProfile extends StatelessWidget {
             gradient: GradientStyle.blueGradient,
             fontSize: 20,
             text: 'プロフィールを更新する',
-            onPressed: () {},
+            onPressed: () {
+              showDialog(
+                context: context,
+                barrierDismissible: false,
+                builder: (BuildContext context) => AccountUpdateProfileDialog(
+                  userName: userName,
+                ),
+              );
+            },
           ),
         ),
       ],
