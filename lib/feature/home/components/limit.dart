@@ -48,8 +48,9 @@ class HomeScreenLimit extends HookConsumerWidget {
                 imagePath.value = image.value?.path;
               }
             });
-            await upLoad();
+
             timer.cancel();
+            await upLoad();
           }
         });
       }
