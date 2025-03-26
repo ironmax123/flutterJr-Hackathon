@@ -5,7 +5,13 @@ import 'package:room_check/primary/utils/color.dart';
 import 'package:room_check/primary/utils/gradient_style.dart';
 
 class HomeScreenButtons extends StatelessWidget {
-  const HomeScreenButtons({super.key});
+  final ValueNotifier isStart;
+  final ValueNotifier totalTime;
+  const HomeScreenButtons({
+    super.key,
+    required this.isStart,
+    required this.totalTime,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +21,9 @@ class HomeScreenButtons extends StatelessWidget {
           outlineColor: AppColor.primaryBlack,
           gradient: GradientStyle.blueGradient,
           text: '撮影',
-          onPressed: () {},
+          onPressed: () async {
+            isStart.value = true;
+          },
           icon: const Icon(
             Icons.camera_alt_outlined,
             size: 32,
@@ -28,7 +36,8 @@ class HomeScreenButtons extends StatelessWidget {
           gradient: GradientStyle.blueGradient,
           text: '友達の写真を見る',
           onPressed: () {},
-        )
+        ),
+        const Gap(28),
       ],
     );
   }
