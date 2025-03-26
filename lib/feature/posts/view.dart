@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:room_check/feature/posts/components/user_info.dart';
-import 'package:room_check/primary/components/user_icon.dart';
 import 'package:room_check/primary/utils/color.dart';
 
 class PostsScreen extends StatelessWidget {

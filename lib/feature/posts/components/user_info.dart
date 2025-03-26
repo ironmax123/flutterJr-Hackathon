@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:room_check/primary/components/user_icon.dart';
 import 'package:room_check/primary/utils/color.dart';
-import 'package:room_check/supabase/supabase.dart';
 
 class PostsScreenUserInfo extends StatelessWidget {
   final String imageUrl;
