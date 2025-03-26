@@ -11,8 +11,13 @@ class InvitationScreen extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
+    final uid = useState('');
     useEffect(() {
-      refreshAuthSession();
+      if (user == null) {
+        uid.value = 'アプリを再起動してください';
+      } else {
+        uid.value = user!.id;
+      }
       return null;
     }, []);
     return Scaffold(
@@ -49,7 +54,7 @@ class InvitationScreen extends HookWidget {
           const Divider(
             color: AppColor.dividerColor,
           ),
-          InvitationScreenAddFriend(uid: user!.id)
+          InvitationScreenAddFriend(uid: uid.value)
         ],
       ),
     );
