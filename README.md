@@ -24,4 +24,4 @@ mian.dart->go_routerを使ったプロジェクトの立ち上げ
 ### 画像
 - cached_network_image: ^3.4.1
 - permission_handler: ^11.4.0
-- camera: ^0.11.0+2
+- camera: ^0.11.0+2ああ
