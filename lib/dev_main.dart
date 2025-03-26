@@ -14,7 +14,7 @@ Future<void> main() async {
   // // 利用可能なカメラのリストから特定のカメラを取得
   // final firstCamera = cameras.first;
   runApp(
-    ProviderScope(
+    const ProviderScope(
         child: MyApp(
             //camera: cameras,
             )),
