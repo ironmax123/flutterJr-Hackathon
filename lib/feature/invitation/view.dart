@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:room_check/feature/invitation/components/add_friend.dart';
 import 'package:room_check/feature/invitation/components/dialog.dart';
 import 'package:room_check/feature/invitation/components/friend_list.dart';
@@ -20,13 +21,13 @@ class InvationScreen extends StatelessWidget {
               showConfirmDialog(
                 context,
                 // 好きな文字列を入れてください。
-                title: 'タイトル',
+                title: 'ログアウトしますか？',
                 // 好きな文字列を入れてください。
-                content: 'テキストテキストテキストテキストテキストテキストテキストテキスト',
+                content: 'ログアウトすると再度ログインが必要です。',
                 onApproved: () {
                   // はい が押された時の処理を入れる。
                   // 以下は例
-                  Navigator.of(context).pop();
+                  context.pop();
                 },
               );
             },

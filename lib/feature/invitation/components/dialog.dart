@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
+import 'package:room_check/primary/utils/color.dart';
 
 /// はい/いいえ が選択できるバージョン
 Future showConfirmDialog(
@@ -21,7 +24,7 @@ Future showConfirmDialog(
             // デバイスに応じて横幅(width)は調整してください。
             width: 311.0,
             decoration: BoxDecoration(
-              border: Border.all(color: Colors.blueAccent, width: 3),
+              border: Border.all(color: AppColor.primaryPurple, width: 3),
               borderRadius: BorderRadius.circular(10.0),
             ),
             child: Column(
@@ -34,7 +37,7 @@ Future showConfirmDialog(
                     child: Text(
                       title,
                       style: const TextStyle(
-                        fontSize: 18.0,
+                        fontSize: 20.0,
                         fontWeight: FontWeight.bold,
                       ),
                     )),
@@ -42,11 +45,13 @@ Future showConfirmDialog(
                   padding: const EdgeInsets.symmetric(horizontal: 24),
                   child: Text(
                     content,
+                    style: const TextStyle(
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.bold,
+                      ),
                   ),
                 ),
-                const SizedBox(
-                  height: 24.0,
-                ),
+                const Gap(24.0),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -54,15 +59,15 @@ Future showConfirmDialog(
                       style: ElevatedButton.styleFrom(
                         side: const BorderSide(
                           width: 1.0,
-                          color: Colors.blueAccent,
+                          color: AppColor.primaryPurple,
                         ),
-                        shadowColor: Colors.grey,
+                        shadowColor: AppColor.primaryGrey,
                         // elevation で影の長さを指定
                         elevation: 5,
                         // primary でボタンの背景色を指定
-                        backgroundColor: Colors.white,
+                        backgroundColor: AppColor.primaryWhite,
                         // onPrimary でボタンないの文字の色を指定
-                        foregroundColor: Colors.black,
+                        foregroundColor: AppColor.primaryBlack,
                         // shape: const StadiumBorder() でボタンのサイドがまるくなります。
                         shape: const StadiumBorder(),
                       ),
@@ -70,31 +75,40 @@ Future showConfirmDialog(
                       child: const Padding(
                         padding:
                             EdgeInsets.symmetric(vertical: 16, horizontal: 18),
-                        child: Text('いいえ'),
+                        child: Text('いいえ',
+                             style: TextStyle(
+                               fontSize: 16.0,
+                               fontWeight: FontWeight.bold,
+                             ),
+
+                        ),
                       ),
                     ),
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         shadowColor: Colors.grey,
                         elevation: 5,
-                        backgroundColor: Colors.blueAccent,
-                        foregroundColor: Colors.white,
+                        backgroundColor: AppColor.primaryPurple,
+                        foregroundColor: AppColor.primaryWhite,
                         shape: const StadiumBorder(),
                       ),
                       onPressed: () {
-                        Navigator.of(context).pop();
+                        context.pop();
                       },
                       child: const Padding(
                         padding:
                             EdgeInsets.symmetric(vertical: 16, horizontal: 18),
-                        child: Text('はい'),
+                        child: Text('はい',
+                        style: TextStyle(
+                               fontSize: 16.0,
+                               fontWeight: FontWeight.bold,
+                             ),
+                        ),
                       ),
                     ),
                   ],
                 ),
-                const SizedBox(
-                  height: 24.0,
-                ),
+                const Gap(24.0),
               ],
             ),
           ),
