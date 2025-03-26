@@ -21,11 +21,7 @@ class InvitationScreenAddFriend extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text('友達を招待',
-              style: TextStyle(
-                color: AppColor.primaryBlack,
-                fontSize: 24,
-              )),
+          const ImvationFriend(),
           Center(
             child: QrImageView(
               data: uid,
@@ -43,7 +39,7 @@ class InvitationScreenAddFriend extends StatelessWidget {
               gradient: GradientStyle.pinkGradient,
               text: '参加する',
               onPressed: () {
-                //TODO: QR読み取り処理追加
+                //TODO: 参加する押下時の処理追加
               },
             ),
           )
@@ -131,17 +127,37 @@ class InputUid extends HookWidget {
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
         ),
-        suffixIcon: IconButton(
-          // 右側にアイコンを配置
-          onPressed: () {
-            controller.clear(); // 入力をクリア
-          },
-          icon: const Icon(
-            Icons.arrow_circle_right_outlined,
-            size: 32,
+      ),
+    );
+  }
+}
+
+class ImvationFriend extends StatelessWidget {
+  const ImvationFriend({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        const Text(
+          '友達を招待',
+          style: TextStyle(
+            color: AppColor.primaryBlack,
+            fontSize: 24,
           ),
         ),
-      ),
+        const Gap(16),
+        PrimaryGradientButton(
+          outlineColor: AppColor.primaryWhite,
+          gradient: GradientStyle.pinkGradient,
+          text: 'QRコード読み取り',
+          fontSize: 12,
+          horizontal: 32,
+          onPressed: () {
+            //TODO: QR読み取り処理追加
+          },
+        ),
+      ],
     );
   }
 }

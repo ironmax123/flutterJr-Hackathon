@@ -1,14 +1,17 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:room_check/feature/home/view.dart';
 import 'package:room_check/primary/utils/color.dart';
 import 'package:room_check/routers/router.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 Future<void> main() async {
   await mainCommonMethod();
+  final cameras = await availableCameras();
   runApp(
-    const ProviderScope(child: MyApp()),
+    ProviderScope(child: MyApp(camera: cameras)),
   );
 }
 
@@ -25,7 +28,8 @@ Future<void> mainCommonMethod() async {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final List<CameraDescription> camera;
+  const MyApp({super.key, required this.camera});
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +39,9 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         scaffoldBackgroundColor: AppColor.primaryWhite,
       ),
+      builder: (context, child) {
+        return HomeScreen(cameras: camera);
+      },
     );
   }
 }
