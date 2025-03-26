@@ -1,6 +1,5 @@
 // ignore_for_file: no_leading_underscores_for_local_identifiers
 
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:camera/camera.dart';
@@ -11,7 +10,6 @@ import 'package:go_router/go_router.dart';
 import 'package:room_check/feature/home/components/buttons.dart';
 import 'package:room_check/feature/home/components/limit.dart';
 import 'package:room_check/primary/components/user_icon.dart';
-import 'package:room_check/supabase/supabase.dart';
 import 'package:room_check/test/camera/widgets/camera_preview.dart';
 
 class HomeScreen extends HookWidget {

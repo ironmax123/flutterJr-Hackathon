@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:room_check/data/post/entity.dart';
 import 'package:room_check/supabase/provider.dart';
@@ -27,7 +25,6 @@ class PostService {
           .from('room_photo')
           .insert(post.toJson())
           .select();
-      log('🈂️$response');
       return Result.ok(
           response.map((data) => PostEntity.fromJson(data)).toList());
     } catch (e) {

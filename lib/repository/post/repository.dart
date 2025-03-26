@@ -71,7 +71,6 @@ class PostRepo {
         imageUrl: post.imageUrl,
       ),
     );
-    log('Repo: $result');
 
     switch (result) {
       case Ok(:final value):
