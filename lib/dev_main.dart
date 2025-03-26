@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:room_check/feature/home/view.dart';
+import 'package:room_check/feature/invitation/view.dart';
+import 'package:room_check/feature/posts/view.dart';
 import 'package:room_check/main.dart';
 import 'package:room_check/primary/utils/color.dart';
 import 'package:camera/camera.dart';
@@ -32,7 +34,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         scaffoldBackgroundColor: AppColor.primaryWhite,
       ),
-      home: HomeScreen(cameras: camera),
+      home: const PostsScreen(),
     );
   }
 }
