@@ -2,6 +2,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:room_check/data/friend/entity.dart';
 import 'package:room_check/service/friends/service.dart';
+import 'package:room_check/supabase/supabase.dart';
 import 'package:room_check/utils/result.dart';
 import 'package:uuid/uuid.dart';
 
@@ -57,7 +58,8 @@ class FriendRepo {
   }
 
   Future<void> addUsers(userId) async {
-    await _friendService.update(userId);
+    final uid = user!.id;
+    await _friendService.update(userId, uid);
   }
 
   Future<String> generatePostId() async {

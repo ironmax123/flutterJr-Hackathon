@@ -1,10 +1,7 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
-import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:room_check/feature/invitation/scan/scan.dart';
@@ -12,12 +9,15 @@ import 'package:room_check/feature/invitation/vm.dart';
 import 'package:room_check/primary/components/gradient_button.dart';
 import 'package:room_check/primary/utils/color.dart';
 import 'package:room_check/primary/utils/gradient_style.dart';
+import 'package:share_plus/share_plus.dart';
 
 class InvitationScreenAddFriend extends HookConsumerWidget {
   final String uid;
+  final String? name;
   const InvitationScreenAddFriend({
     super.key,
     required this.uid,
+    required this.name,
   });
 
   @override
@@ -43,7 +43,12 @@ class InvitationScreenAddFriend extends HookConsumerWidget {
             ),
           ),
           const Gap(14),
-          Center(child: ShareUid(uid: uid)),
+          Center(
+            child: ShareUid(
+              uid: uid,
+              name: name,
+            ),
+          ),
           const Gap(32),
           InputUid(controller: controller),
           const Gap(12),
@@ -69,9 +74,11 @@ class InvitationScreenAddFriend extends HookConsumerWidget {
 
 class ShareUid extends StatelessWidget {
   final String uid;
+  final String? name;
   const ShareUid({
     super.key,
     required this.uid,
+    required this.name,
   });
 
   @override
@@ -115,7 +122,12 @@ class ShareUid extends StatelessWidget {
           const Gap(8),
           IconButton(
             onPressed: () {
-              //TODO: SNSシェア追加
+              final text = "$nameから誘いが来ています \n \n$uid\n \nでピカトモに追加しよう!!!";
+              const subject = "共有先を選択";
+              Share.share(
+                text,
+                subject: subject,
+              );
             },
             icon: const Icon(
               Icons.share_rounded,

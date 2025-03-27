@@ -2,7 +2,6 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:room_check/feature/home/view.dart';
-import 'package:room_check/feature/invitation/scan/page.dart';
 import 'package:room_check/feature/invitation/view.dart';
 import 'package:room_check/feature/login/page.dart';
 import 'package:room_check/feature/login_check.dart';
@@ -63,19 +62,6 @@ GoRouter goRouter(List<CameraDescription> cameras) {
             child: const InvitationScreen(),
           );
         },
-        routes: [
-          // 子ルートとして/scanを追加
-          GoRoute(
-            path: 'scan',
-            name: 'qrscan',
-            pageBuilder: (context, state) {
-              return MaterialPage(
-                key: state.pageKey,
-                child: const QRcodeScanPage(),
-              );
-            },
-          ),
-        ],
       ),
     ],
   );

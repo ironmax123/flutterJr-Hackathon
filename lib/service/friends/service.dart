@@ -20,26 +20,41 @@ class FriendService {
 
   FriendService(this.supabaseClient);
 
-  /// supabaseに投稿を追加
-  Future<void> update(String userId) async {
-    final uid = user!.id;
+  /// supabase に投稿を追加（myId を userId の friends に追加）
+  Future<void> update(String userId, String myId) async {
+    try {
+      // 1️⃣ userId に一致するカラムの friends を取得
+      final response = await supabase
+          .from('friend')
+          .select('friends')
+          .eq('id', userId)
+          .single();
 
-    // 1️⃣ 現在の friends リストを取得
-    final response =
-        await supabase.from('friend').select('friends').eq('id', uid).single();
+      if (response == null) {
+        log('ユーザーが見つかりませんでした: $userId');
+        return;
+      }
 
-    // 2️⃣ 既存の friends リストに userId を追加
-    final List<String> friends = List<String>.from(response['friends'] ?? []);
-    if (!friends.contains(userId)) {
-      friends.add(userId);
+      // 2️⃣ 既存の friends リストを取得
+      final List<String> friends = List<String>.from(response['friends'] ?? []);
+
+      // 3️⃣ myId を friends に追加（重複チェックあり）
+      if (!friends.contains(myId)) {
+        friends.add(myId);
+      } else {
+        log('すでに friends に含まれています: $myId');
+        return;
+      }
+
+      // 4️⃣ Supabase に更新リクエストを送信
+      final updateResponse = await supabase
+          .from('friend')
+          .update({'friends': friends}).eq('id', userId);
+
+      log('更新結果: $updateResponse');
+    } catch (e) {
+      log('エラー: $e');
     }
-
-    // 3️⃣ Supabase に更新リクエストを送信
-    final updateResponse = await supabase
-        .from('friend')
-        .update({'friends': friends}).eq('id', uid);
-
-    log('更新結果: $updateResponse');
   }
 
   /// 投稿をsupabaseから取得
