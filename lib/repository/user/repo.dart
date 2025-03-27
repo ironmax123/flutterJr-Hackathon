@@ -73,6 +73,8 @@ class UserRepo {
     bool shouldRefresh = false,
   }) async {
     final result = await _userService.getCurrentUser();
+
+    await _userService.updateUserInfo(userId, newName, newIconUrl);
     switch (result) {
       case Ok(:final value):
         _ref.read(userRepoCasheProvider.notifier).update(userId, value);

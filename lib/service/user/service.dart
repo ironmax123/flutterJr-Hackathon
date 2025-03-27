@@ -46,4 +46,14 @@ class UserService {
       return Result.error(Exception(e));
     }
   }
+
+  Future<void> updateUserInfo(
+    String uid,
+    String? name,
+    String? imageUrl,
+  ) async {
+    await supabase
+        .from('userTable')
+        .update({"username": name, "avatar_url": imageUrl}).eq('id', uid);
+  }
 }
