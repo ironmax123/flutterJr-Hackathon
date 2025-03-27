@@ -9,7 +9,6 @@ class UserEntity with _$UserEntity {
     required String id,
     required String? username,
     required String? avatar_url,
-    required List<String>? bookMarkIDs,
   }) = _UserEntity;
 
   factory UserEntity.fromJson(Map<String, dynamic> json) =>

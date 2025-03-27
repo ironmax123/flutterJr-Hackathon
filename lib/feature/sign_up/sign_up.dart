@@ -23,6 +23,11 @@ Future<void> signUp(
     await supabase.from('friend').insert({
       'id': uid.toString(),
     }).select();
+    await supabase.from('userTable').insert({
+      'id': uid.toString(),
+      'username': userName,
+      'avatar_url': imageUrl,
+    }).select();
   } on AuthException catch (error) {
     log('エラー：$error');
     return;

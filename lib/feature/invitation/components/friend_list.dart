@@ -21,26 +21,35 @@ class InvitationScreenFriendList extends StatelessWidget {
               color: AppColor.primaryBlack,
             ),
           ),
-          ListView.builder(
-            itemCount: friendList!.length,
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemBuilder: (context, index) {
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    friendList![index],
-                    style: const TextStyle(
-                      color: AppColor.primaryBlack,
-                      fontSize: 16,
-                    ),
+          const Gap(20),
+          friendList == null || friendList!.isEmpty
+              ? const Text(
+                  'ともだちが見つからなかったよ😢',
+                  style: TextStyle(
+                    color: AppColor.primaryBlack,
+                    fontSize: 16,
                   ),
-                  const Gap(8),
-                ],
-              );
-            },
-          ),
+                )
+              : ListView.builder(
+                  itemCount: friendList!.length,
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemBuilder: (context, index) {
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          friendList![index],
+                          style: const TextStyle(
+                            color: AppColor.primaryBlack,
+                            fontSize: 16,
+                          ),
+                        ),
+                        const Gap(8),
+                      ],
+                    );
+                  },
+                ),
         ],
       ),
     );

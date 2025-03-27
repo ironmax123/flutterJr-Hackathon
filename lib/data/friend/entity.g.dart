@@ -6,16 +6,15 @@ part of 'entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$UserEntityImpl _$$UserEntityImplFromJson(Map<String, dynamic> json) =>
-    _$UserEntityImpl(
+_$FriendEntityImpl _$$FriendEntityImplFromJson(Map<String, dynamic> json) =>
+    _$FriendEntityImpl(
       id: json['id'] as String,
-      username: json['username'] as String?,
-      avatar_url: json['avatar_url'] as String?,
+      friends:
+          (json['friends'] as List<dynamic>).map((e) => e as String?).toList(),
     );
 
-Map<String, dynamic> _$$UserEntityImplToJson(_$UserEntityImpl instance) =>
+Map<String, dynamic> _$$FriendEntityImplToJson(_$FriendEntityImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'username': instance.username,
-      'avatar_url': instance.avatar_url,
+      'friends': instance.friends,
     };

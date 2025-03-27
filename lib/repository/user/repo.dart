@@ -82,7 +82,7 @@ class UserRepo {
     }
   }
 
-  Future<Result> getUsers(String uid) async {
+  Future<Result<List<UserEntity>>> getUsers(String uid) async {
     final result = await _userService.getUsers(uid);
     switch (result) {
       case Ok(:final value):

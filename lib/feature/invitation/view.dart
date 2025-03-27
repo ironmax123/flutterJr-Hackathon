@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
 import 'package:room_check/feature/invitation/components/add_friend.dart';
 import 'package:room_check/feature/invitation/components/dialog.dart';
 import 'package:room_check/feature/invitation/components/friend_list.dart';
@@ -44,6 +43,42 @@ class InvitationScreen extends HookConsumerWidget {
             return '読み込みエラー';
           },
         );
+    final friendsId = ref.watch(invitationSCreenVMProvider).when(
+          data: (data) => data.friendEntity?.first.friends,
+          loading: () => '読み込み中...',
+          error: (err, stack) {
+            log('エラー: $err');
+            return '読み込みエラー';
+          },
+        );
+
+    print(friendsId);
+    final friendIdsList = useState<List<String>>([]);
+
+    final friendList = useState<List<String>>([]);
+
+    Future<void> fetchNames() async {
+      final updatedList = [...friendList.value]; // 現在のリストをコピー
+      for (var i = 0; i < friendIdsList.value.length; i++) {
+        final result = await ref
+            .read(invitationSCreenVMProvider.notifier)
+            .getFriendName(friendIdsList.value[i]);
+
+        updatedList.add(result.toString());
+      }
+      friendList.value = updatedList; // 新しいリストを再代入
+      print(updatedList);
+    }
+
+    useEffect(() {
+      if (friendsId is List) {
+        friendIdsList.value = List<String>.from(friendsId);
+      } else {
+        log('friendsIdはリストではありません: $friendsId');
+      }
+      fetchNames();
+      return null;
+    }, [friendsId]);
 
     return Scaffold(
       appBar: AppBar(
@@ -57,7 +92,7 @@ class InvitationScreen extends HookConsumerWidget {
                 title: 'ログアウトしますか？',
                 // 好きな文字列を入れてください。
                 content: 'ログアウトすると再度ログインが必要です。',
-                onApproved: () => context.pop(), 
+                onApproved: () => context.pop(),
               );
             },
             icon: const Icon(
@@ -76,19 +111,16 @@ class InvitationScreen extends HookConsumerWidget {
           const Divider(
             color: AppColor.dividerColor,
           ),
-          const InvitationScreenFriendList(
-            friendList: [
-              '太郎',
-              '花子',
-              '次郎',
-              '三郎',
-              '四郎',
-            ],
+          InvitationScreenFriendList(
+            friendList: friendList.value,
           ),
           const Divider(
             color: AppColor.dividerColor,
           ),
-          InvitationScreenAddFriend(uid: uid.value)
+          InvitationScreenAddFriend(
+            uid: uid.value,
+            name: userName,
+          ),
         ],
       ),
     );

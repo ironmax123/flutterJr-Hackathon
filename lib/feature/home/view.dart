@@ -91,16 +91,18 @@ class HomeScreen extends HookConsumerWidget {
                 totalTime: totatlTime,
               ),
               const Gap(50),
-              (imagePath.value != null)
-                  ? Image.file(File(imagePath.value!))
-                  : (_controller.value != null &&
-                          _initializeControllerFuture.value != null)
-                      ? CameraPre(
-                          controller: _controller.value!,
-                          initializeControllerFuture:
-                              _initializeControllerFuture.value!,
-                        )
-                      : Container(),
+              isStart.value
+                  ? (imagePath.value != null)
+                      ? Image.file(File(imagePath.value!))
+                      : (_controller.value != null &&
+                              _initializeControllerFuture.value != null)
+                          ? CameraPre(
+                              controller: _controller.value!,
+                              initializeControllerFuture:
+                                  _initializeControllerFuture.value!,
+                            )
+                          : Container()
+                  : Container(),
               const Gap(48),
               HomeScreenButtons(
                 isStart: isStart,
