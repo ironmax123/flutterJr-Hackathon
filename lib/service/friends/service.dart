@@ -21,37 +21,50 @@ class FriendService {
   FriendService(this.supabaseClient);
 
   /// supabase に投稿を追加（myId を userId の friends に追加）
+  /// supabase に投稿を追加（myId と userId 双方に friends を追加）
   Future<void> update(String userId, String myId) async {
     try {
-      // 1️⃣ userId に一致するカラムの friends を取得
-      final response = await supabase
+      // 1️⃣ myId の friends リストを取得
+      final myResponse = await supabase
+          .from('friend')
+          .select('friends')
+          .eq('id', myId)
+          .single();
+
+      // 2️⃣ userId の friends リストを取得
+      final userResponse = await supabase
           .from('friend')
           .select('friends')
           .eq('id', userId)
           .single();
 
-      if (response == null) {
-        log('ユーザーが見つかりませんでした: $userId');
-        return;
-      }
-
-      // 2️⃣ 既存の friends リストを取得
-      final List<String> friends = List<String>.from(response['friends'] ?? []);
-
-      // 3️⃣ myId を friends に追加（重複チェックあり）
-      if (!friends.contains(myId)) {
-        friends.add(myId);
+      // 3️⃣ myId の friends に userId を追加
+      final List<String> myFriends =
+          List<String>.from(myResponse['friends'] ?? []);
+      if (!myFriends.contains(userId)) {
+        myFriends.add(userId);
+        // 4️⃣ Supabase で myId の friends を更新
+        await supabase
+            .from('friend')
+            .update({'friends': myFriends}).eq('id', myId);
+        log('myId に userId を追加しました: $myId -> $userId');
       } else {
-        log('すでに friends に含まれています: $myId');
-        return;
+        log('myId に userId はすでに含まれています');
       }
 
-      // 4️⃣ Supabase に更新リクエストを送信
-      final updateResponse = await supabase
-          .from('friend')
-          .update({'friends': friends}).eq('id', userId);
-
-      log('更新結果: $updateResponse');
+      // 5️⃣ userId の friends に myId を追加
+      final List<String> userFriends =
+          List<String>.from(userResponse['friends'] ?? []);
+      if (!userFriends.contains(myId)) {
+        userFriends.add(myId);
+        // 6️⃣ Supabase で userId の friends を更新
+        await supabase
+            .from('friend')
+            .update({'friends': userFriends}).eq('id', userId);
+        log('userId に myId を追加しました: $userId -> $myId');
+      } else {
+        log('userId に myId はすでに含まれています');
+      }
     } catch (e) {
       log('エラー: $e');
     }

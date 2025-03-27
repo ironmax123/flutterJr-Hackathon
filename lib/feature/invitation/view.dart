@@ -52,6 +52,7 @@ class InvitationScreen extends HookConsumerWidget {
           },
         );
 
+    print(friendsId);
     final friendIdsList = useState<List<String>>([]);
 
     final friendList = useState<List<String>>([]);
@@ -66,6 +67,7 @@ class InvitationScreen extends HookConsumerWidget {
         updatedList.add(result.toString());
       }
       friendList.value = updatedList; // 新しいリストを再代入
+      print(updatedList);
     }
 
     useEffect(() {
