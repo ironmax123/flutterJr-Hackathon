@@ -57,11 +57,10 @@ class InvitationScreenAddFriend extends HookConsumerWidget {
               outlineColor: AppColor.primaryWhite,
               gradient: GradientStyle.pinkGradient,
               text: '参加する',
-              onPressed: () {
+              onPressed: () async {
                 ref
                     .read(invitationSCreenVMProvider.notifier)
                     .addFriend(controller.value.text);
-
                 controller.clear();
               },
             ),

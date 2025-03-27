@@ -57,7 +57,8 @@ class InvitationScreen extends HookConsumerWidget {
     final friendList = useState<List<String>>([]);
 
     Future<void> fetchNames() async {
-      final updatedList = [...friendList.value]; // 現在のリストをコピー
+      friendList.value = []; // リストをクリア
+      final updatedList = <String>[];
       for (var i = 0; i < friendIdsList.value.length; i++) {
         final result = await ref
             .read(invitationSCreenVMProvider.notifier)
@@ -69,12 +70,14 @@ class InvitationScreen extends HookConsumerWidget {
     }
 
     useEffect(() {
+      log('aaaiiii');
       if (friendsId is List) {
         friendIdsList.value = List<String>.from(friendsId);
+        fetchNames();
       } else {
         log('friendsIdはリストではありません: $friendsId');
       }
-      fetchNames();
+
       return null;
     }, [friendsId]);
 

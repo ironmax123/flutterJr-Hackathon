@@ -28,7 +28,7 @@ class PostsScreenUserInfo extends StatelessWidget {
           userName,
           style: const TextStyle(
             color: AppColor.primaryBlack,
-            fontSize: 24,
+            fontSize: 20,
           ),
         ),
         const Gap(4),
@@ -36,7 +36,7 @@ class PostsScreenUserInfo extends StatelessWidget {
           createTimeAgoString(timeAgo),
           style: const TextStyle(
             color: AppColor.primaryBlackGrey,
-            fontSize: 14,
+            fontSize: 12,
           ),
         ),
       ],

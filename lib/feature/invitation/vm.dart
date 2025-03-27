@@ -3,7 +3,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:room_check/data/friend/entity.dart';
 import 'package:room_check/data/user/entity.dart';
 import 'package:room_check/repository/friends/repository.dart';
-import 'package:room_check/repository/user/repo.dart';
+import 'package:room_check/repository/user/repository.dart';
 import 'package:room_check/supabase/supabase.dart';
 import 'package:room_check/utils/result.dart';
 
@@ -66,9 +66,17 @@ class InvitationSCreenVM extends _$InvitationSCreenVM {
     );
   }
 
-  void addFriend(userId) async {
+  void addFriend(String userId) async {
     final friendRepo = ref.read(friendRepoProvider);
     await friendRepo.addUsers(userId);
+
+    if (state.value != null) {
+      final updatedFriends =
+          List<FriendEntity>.from(state.value!.friendEntity ?? []);
+      updatedFriends.add(FriendEntity(
+          id: userId, friends: [])); // Provide the required 'friends' parameter
+      state = AsyncData(state.value!.copyWith(friendEntity: updatedFriends));
+    }
   }
 
   Future<String?> getFriendName(userId) async {

@@ -6,7 +6,7 @@ import 'package:room_check/data/user/entity.dart';
 import 'package:room_check/service/user/service.dart';
 import 'package:room_check/utils/result.dart';
 
-part 'repo.g.dart';
+part 'repository.g.dart';
 
 @riverpod
 UserRepo userRepo(Ref ref) => UserRepo(

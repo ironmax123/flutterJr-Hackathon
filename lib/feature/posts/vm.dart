@@ -2,7 +2,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:room_check/data/post/entity.dart';
 import 'package:room_check/repository/post/repository.dart';
-import 'package:room_check/repository/user/repo.dart';
+import 'package:room_check/repository/user/repository.dart';
 import 'package:room_check/utils/result.dart';
 part 'vm.freezed.dart';
 part 'vm.g.dart';

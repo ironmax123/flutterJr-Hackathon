@@ -21,7 +21,6 @@ class PostsScreen extends HookConsumerWidget {
             return 'error';
           },
         );
-    print(postData);
     final data = postData is List<dynamic> ? postData : [];
 
     return Scaffold(

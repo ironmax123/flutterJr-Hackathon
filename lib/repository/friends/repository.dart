@@ -37,8 +37,8 @@ class FriendRepo {
   final FriendService _friendService;
 
   Future<Result<List<FriendEntity>>> readFriend(
-      {bool shouldRefresh = false, String? postId}) async {
-    final cacheData = _ref.read(friendRepoCasheProvider)[postId];
+      {bool shouldRefresh = false, String? userId}) async {
+    final cacheData = _ref.read(friendRepoCasheProvider)[userId];
     final useCache = !shouldRefresh && cacheData != null;
     if (useCache) {
       return Result.ok([cacheData]);
@@ -48,8 +48,8 @@ class FriendRepo {
 
     switch (result) {
       case Ok(:final value):
-        for (var post in value) {
-          _ref.read(friendRepoCasheProvider.notifier).update(post.id, post);
+        for (var user in value) {
+          _ref.read(friendRepoCasheProvider.notifier).update(user.id, user);
         }
         return Result.ok(value);
       case Error():
@@ -59,6 +59,7 @@ class FriendRepo {
 
   Future<void> addUsers(userId) async {
     final uid = user!.id;
+
     await _friendService.update(userId, uid);
   }
 
