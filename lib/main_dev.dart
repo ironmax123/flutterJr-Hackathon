@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:room_check/feature/invitation/view.dart';
 import 'package:room_check/feature/login/page.dart';
 
 import 'package:room_check/main.dart';
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         scaffoldBackgroundColor: AppColor.primaryWhite,
       ),
-      home: const LoginPage(),
+      home: const InvitationScreen(),
     );
   }
 }
