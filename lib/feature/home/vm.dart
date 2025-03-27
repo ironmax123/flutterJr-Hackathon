@@ -23,7 +23,7 @@ class HomeScreenVM extends _$HomeScreenVM {
   @override
   Future<HomeState> build() async {
     final userRepo = ref.read(userRepoProvider);
-    final userInfo = await userRepo.getUser(user!.id);
+    final userInfo = await userRepo.getCurrentUser(user!.id);
     switch (userInfo) {
       case Ok(:final value):
         if (value != null) {
@@ -45,6 +45,7 @@ class HomeScreenVM extends _$HomeScreenVM {
       postId: postId,
       userId: user!.id,
       imageUrl: imageUrl,
+      created_at: DateTime.now(),
     );
     await postRepo.createPost(post);
   }
@@ -53,7 +54,7 @@ class HomeScreenVM extends _$HomeScreenVM {
     final userId = user!.id;
     final userRepo = ref.read(userRepoProvider);
 
-    final userInfo = await userRepo.getUser(userId);
+    final userInfo = await userRepo.getCurrentUser(userId);
     switch (userInfo) {
       case Ok(:final value):
         state = AsyncData(state.value!.copyWith(userEntity: value));
