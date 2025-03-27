@@ -1,9 +1,13 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import 'package:room_check/feature/invitation/scan/scan.dart';
 import 'package:room_check/feature/invitation/vm.dart';
 import 'package:room_check/primary/components/gradient_button.dart';
 import 'package:room_check/primary/utils/color.dart';
@@ -19,13 +23,19 @@ class InvitationScreenAddFriend extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final controller = useTextEditingController();
+    final readData = useState('');
+    final typeData = useState('');
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const ImvationFriend(),
+          ImvationFriend(
+            readData: readData,
+            typeData: typeData,
+            controller: controller,
+          ),
           Center(
             child: QrImageView(
               data: uid,
@@ -46,6 +56,8 @@ class InvitationScreenAddFriend extends HookConsumerWidget {
                 ref
                     .read(invitationSCreenVMProvider.notifier)
                     .addFriend(controller.value.text);
+
+                controller.clear();
               },
             ),
           )
@@ -142,7 +154,15 @@ class InputUid extends HookWidget {
 }
 
 class ImvationFriend extends StatelessWidget {
-  const ImvationFriend({super.key});
+  final ValueNotifier readData;
+  final ValueNotifier typeData;
+  final TextEditingController controller;
+  const ImvationFriend({
+    super.key,
+    required this.readData,
+    required this.typeData,
+    required this.controller,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -162,8 +182,9 @@ class ImvationFriend extends StatelessWidget {
           text: 'QRコード読み取り',
           fontSize: 12,
           horizontal: 32,
-          onPressed: () {
-            //TODO: QR読み取り処理追加
+          onPressed: () async {
+            await scan(readData, typeData);
+            controller.text = await readData.value;
           },
         ),
       ],
