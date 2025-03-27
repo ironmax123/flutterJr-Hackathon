@@ -23,6 +23,7 @@ mixin _$PostEntity {
   String get postId => throw _privateConstructorUsedError;
   String get userId => throw _privateConstructorUsedError;
   String? get imageUrl => throw _privateConstructorUsedError;
+  DateTime get created_at => throw _privateConstructorUsedError;
 
   /// Serializes this PostEntity to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -40,7 +41,8 @@ abstract class $PostEntityCopyWith<$Res> {
           PostEntity value, $Res Function(PostEntity) then) =
       _$PostEntityCopyWithImpl<$Res, PostEntity>;
   @useResult
-  $Res call({String postId, String userId, String? imageUrl});
+  $Res call(
+      {String postId, String userId, String? imageUrl, DateTime created_at});
 }
 
 /// @nodoc
@@ -61,6 +63,7 @@ class _$PostEntityCopyWithImpl<$Res, $Val extends PostEntity>
     Object? postId = null,
     Object? userId = null,
     Object? imageUrl = freezed,
+    Object? created_at = null,
   }) {
     return _then(_value.copyWith(
       postId: null == postId
@@ -75,6 +78,10 @@ class _$PostEntityCopyWithImpl<$Res, $Val extends PostEntity>
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
               as String?,
+      created_at: null == created_at
+          ? _value.created_at
+          : created_at // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ) as $Val);
   }
 }
@@ -87,7 +94,8 @@ abstract class _$$PostEntityImplCopyWith<$Res>
       __$$PostEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String postId, String userId, String? imageUrl});
+  $Res call(
+      {String postId, String userId, String? imageUrl, DateTime created_at});
 }
 
 /// @nodoc
@@ -106,6 +114,7 @@ class __$$PostEntityImplCopyWithImpl<$Res>
     Object? postId = null,
     Object? userId = null,
     Object? imageUrl = freezed,
+    Object? created_at = null,
   }) {
     return _then(_$PostEntityImpl(
       postId: null == postId
@@ -120,6 +129,10 @@ class __$$PostEntityImplCopyWithImpl<$Res>
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
               as String?,
+      created_at: null == created_at
+          ? _value.created_at
+          : created_at // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ));
   }
 }
@@ -128,7 +141,10 @@ class __$$PostEntityImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$PostEntityImpl implements _PostEntity {
   const _$PostEntityImpl(
-      {required this.postId, required this.userId, required this.imageUrl});
+      {required this.postId,
+      required this.userId,
+      required this.imageUrl,
+      required this.created_at});
 
   factory _$PostEntityImpl.fromJson(Map<String, dynamic> json) =>
       _$$PostEntityImplFromJson(json);
@@ -139,10 +155,12 @@ class _$PostEntityImpl implements _PostEntity {
   final String userId;
   @override
   final String? imageUrl;
+  @override
+  final DateTime created_at;
 
   @override
   String toString() {
-    return 'PostEntity(postId: $postId, userId: $userId, imageUrl: $imageUrl)';
+    return 'PostEntity(postId: $postId, userId: $userId, imageUrl: $imageUrl, created_at: $created_at)';
   }
 
   @override
@@ -153,12 +171,15 @@ class _$PostEntityImpl implements _PostEntity {
             (identical(other.postId, postId) || other.postId == postId) &&
             (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.imageUrl, imageUrl) ||
-                other.imageUrl == imageUrl));
+                other.imageUrl == imageUrl) &&
+            (identical(other.created_at, created_at) ||
+                other.created_at == created_at));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, postId, userId, imageUrl);
+  int get hashCode =>
+      Object.hash(runtimeType, postId, userId, imageUrl, created_at);
 
   /// Create a copy of PostEntity
   /// with the given fields replaced by the non-null parameter values.
@@ -180,7 +201,8 @@ abstract class _PostEntity implements PostEntity {
   const factory _PostEntity(
       {required final String postId,
       required final String userId,
-      required final String? imageUrl}) = _$PostEntityImpl;
+      required final String? imageUrl,
+      required final DateTime created_at}) = _$PostEntityImpl;
 
   factory _PostEntity.fromJson(Map<String, dynamic> json) =
       _$PostEntityImpl.fromJson;
@@ -191,6 +213,8 @@ abstract class _PostEntity implements PostEntity {
   String get userId;
   @override
   String? get imageUrl;
+  @override
+  DateTime get created_at;
 
   /// Create a copy of PostEntity
   /// with the given fields replaced by the non-null parameter values.

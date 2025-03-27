@@ -69,6 +69,7 @@ class PostRepo {
         postId: post.postId,
         userId: post.userId,
         imageUrl: post.imageUrl,
+        created_at: post.created_at,
       ),
     );
 

@@ -20,7 +20,7 @@ class InvitationSCreenVM extends _$InvitationSCreenVM {
   @override
   Future<InvitationState> build() async {
     final userRepo = ref.read(userRepoProvider);
-    final userInfo = await userRepo.getUser(user!.id);
+    final userInfo = await userRepo.getCurrentUser(user!.id);
     switch (userInfo) {
       case Ok(:final value):
         if (value != null) {

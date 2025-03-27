@@ -5,6 +5,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:room_check/primary/utils/color.dart';
 import 'package:room_check/routers/router.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:timeago/timeago.dart' as timeAgo;
 
 Future<void> main() async {
   await mainCommonMethod();
@@ -16,6 +17,7 @@ Future<void> main() async {
 
 Future<void> mainCommonMethod() async {
   WidgetsFlutterBinding.ensureInitialized();
+  timeAgo.setLocaleMessages('ja', timeAgo.JaMessages());
   await dotenv.load(fileName: '.env');
   final String url = dotenv.env['URL']!;
   final String anonkey = dotenv.env['ANON_KEY']!;

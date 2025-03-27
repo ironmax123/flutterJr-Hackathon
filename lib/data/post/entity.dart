@@ -9,6 +9,7 @@ class PostEntity with _$PostEntity {
     required String postId,
     required String userId,
     required String? imageUrl,
+    required DateTime created_at,
   }) = _PostEntity;
 
   factory PostEntity.fromJson(Map<String, dynamic> json) =>

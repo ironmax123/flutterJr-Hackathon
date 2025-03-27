@@ -11,6 +11,7 @@ _$PostEntityImpl _$$PostEntityImplFromJson(Map<String, dynamic> json) =>
       postId: json['postId'] as String,
       userId: json['userId'] as String,
       imageUrl: json['imageUrl'] as String?,
+      created_at: DateTime.parse(json['created_at'] as String),
     );
 
 Map<String, dynamic> _$$PostEntityImplToJson(_$PostEntityImpl instance) =>
@@ -18,4 +19,5 @@ Map<String, dynamic> _$$PostEntityImplToJson(_$PostEntityImpl instance) =>
       'postId': instance.postId,
       'userId': instance.userId,
       'imageUrl': instance.imageUrl,
+      'created_at': instance.created_at.toIso8601String(),
     };

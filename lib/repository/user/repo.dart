@@ -46,7 +46,7 @@ class UserRepo {
   final Ref _ref;
   final UserService _userService;
 
-  Future<Result<UserEntity?>> getUser(
+  Future<Result<UserEntity?>> getCurrentUser(
     String userId, {
     bool shouldRefresh = false,
   }) async {
@@ -56,7 +56,7 @@ class UserRepo {
       log('cache hit');
       return Result.ok(cacheData);
     }
-    final result = await _userService.getUser();
+    final result = await _userService.getCurrentUser();
     switch (result) {
       case Ok(:final value):
         _ref.read(userRepoCasheProvider.notifier).update(userId, value);
@@ -72,10 +72,20 @@ class UserRepo {
     required String? newIconUrl,
     bool shouldRefresh = false,
   }) async {
-    final result = await _userService.getUser();
+    final result = await _userService.getCurrentUser();
     switch (result) {
       case Ok(:final value):
         _ref.read(userRepoCasheProvider.notifier).update(userId, value);
+        return Result.ok(value);
+      case Error():
+        return Result.error(result.error);
+    }
+  }
+
+  Future<Result> getUsers(String uid) async {
+    final result = await _userService.getUsers(uid);
+    switch (result) {
+      case Ok(:final value):
         return Result.ok(value);
       case Error():
         return Result.error(result.error);

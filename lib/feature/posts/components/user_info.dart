@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:room_check/primary/components/user_icon.dart';
 import 'package:room_check/primary/utils/color.dart';
+import 'package:room_check/utils/timeago.dart';
 
 class PostsScreenUserInfo extends StatelessWidget {
   final String imageUrl;
   final String userName;
-  final String timeAgo;
+  final DateTime timeAgo;
   const PostsScreenUserInfo({
     super.key,
     required this.imageUrl,
@@ -32,7 +33,7 @@ class PostsScreenUserInfo extends StatelessWidget {
         ),
         const Gap(4),
         Text(
-          timeAgo,
+          createTimeAgoString(timeAgo),
           style: const TextStyle(
             color: AppColor.primaryBlackGrey,
             fontSize: 14,
