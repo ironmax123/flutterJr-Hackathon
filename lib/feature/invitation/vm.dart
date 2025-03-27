@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:room_check/data/user/entity.dart';
+import 'package:room_check/repository/friends/repository.dart';
 import 'package:room_check/repository/user/repo.dart';
 import 'package:room_check/supabase/supabase.dart';
 import 'package:room_check/utils/result.dart';
@@ -53,5 +54,10 @@ class InvitationSCreenVM extends _$InvitationSCreenVM {
       newName: newName,
       newIconUrl: iconUrl,
     );
+  }
+
+  void addFriend(userId) async {
+    final friendRepo = ref.read(friendRepoProvider);
+    await friendRepo.addUsers(userId);
   }
 }

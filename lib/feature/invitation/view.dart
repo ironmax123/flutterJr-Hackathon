@@ -57,7 +57,7 @@ class InvitationScreen extends HookConsumerWidget {
                 title: 'ログアウトしますか？',
                 // 好きな文字列を入れてください。
                 content: 'ログアウトすると再度ログインが必要です。',
-                onApproved: () => context.pop(), 
+                onApproved: () => context.pop(),
               );
             },
             icon: const Icon(

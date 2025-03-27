@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import 'package:room_check/feature/invitation/vm.dart';
 import 'package:room_check/primary/components/gradient_button.dart';
 import 'package:room_check/primary/utils/color.dart';
 import 'package:room_check/primary/utils/gradient_style.dart';
 
-class InvitationScreenAddFriend extends StatelessWidget {
+class InvitationScreenAddFriend extends HookConsumerWidget {
   final String uid;
   const InvitationScreenAddFriend({
     super.key,
@@ -15,7 +17,9 @@ class InvitationScreenAddFriend extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final controller = useTextEditingController();
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(
@@ -31,7 +35,7 @@ class InvitationScreenAddFriend extends StatelessWidget {
           const Gap(14),
           Center(child: ShareUid(uid: uid)),
           const Gap(32),
-          const InputUid(),
+          InputUid(controller: controller),
           const Gap(12),
           Center(
             child: PrimaryGradientButton(
@@ -39,7 +43,9 @@ class InvitationScreenAddFriend extends StatelessWidget {
               gradient: GradientStyle.pinkGradient,
               text: '参加する',
               onPressed: () {
-                //TODO: 参加する押下時の処理追加
+                ref
+                    .read(invitationSCreenVMProvider.notifier)
+                    .addFriend(controller.value.text);
               },
             ),
           )
@@ -110,11 +116,14 @@ class ShareUid extends StatelessWidget {
 }
 
 class InputUid extends HookWidget {
-  const InputUid({super.key});
+  final TextEditingController controller;
+  const InputUid({
+    super.key,
+    required this.controller,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final controller = useTextEditingController();
     return TextField(
       controller: controller,
       onTapOutside: (e) {
