@@ -48,7 +48,8 @@ class PostRepo {
     if (useCache) {
       return Result.ok([cacheData]);
     }
-    final result = await _postService.read();
+    final uid = user!.id;
+    final result = await _postService.read(uid);
     // final socket = await _postService.socket();
 
     switch (result) {

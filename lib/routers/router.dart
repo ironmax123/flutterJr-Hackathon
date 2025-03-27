@@ -5,6 +5,7 @@ import 'package:room_check/feature/home/view.dart';
 import 'package:room_check/feature/invitation/view.dart';
 import 'package:room_check/feature/login/page.dart';
 import 'package:room_check/feature/login_check.dart';
+import 'package:room_check/feature/posts/view.dart';
 import 'package:room_check/feature/sign_up/page.dart';
 
 GoRouter goRouter(List<CameraDescription> cameras) {
@@ -60,6 +61,16 @@ GoRouter goRouter(List<CameraDescription> cameras) {
           return MaterialPage(
             key: state.pageKey,
             child: const InvitationScreen(),
+          );
+        },
+      ),
+      GoRoute(
+        path: '/posts',
+        name: 'posts',
+        pageBuilder: (context, state) {
+          return MaterialPage(
+            key: state.pageKey,
+            child: const PostsScreen(),
           );
         },
       ),

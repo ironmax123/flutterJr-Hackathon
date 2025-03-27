@@ -7,7 +7,7 @@ part of 'vm.dart';
 // **************************************************************************
 
 String _$invitationSCreenVMHash() =>
-    r'c1c401d2bf7f20f5afe43869376356c5a4cbaef7';
+    r'c04cd64047ada27888f4fbfce29325e9f1ed0343';
 
 /// See also [InvitationSCreenVM].
 @ProviderFor(InvitationSCreenVM)

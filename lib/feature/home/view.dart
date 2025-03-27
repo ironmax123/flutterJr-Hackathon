@@ -13,7 +13,7 @@ import 'package:room_check/feature/home/components/buttons.dart';
 import 'package:room_check/feature/home/components/limit.dart';
 import 'package:room_check/feature/home/vm.dart';
 import 'package:room_check/primary/components/user_icon.dart';
-import 'package:room_check/repository/user/repo.dart';
+import 'package:room_check/repository/user/repository.dart';
 import 'package:room_check/test/camera/widgets/camera_preview.dart';
 
 class HomeScreen extends HookConsumerWidget {
