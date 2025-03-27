@@ -23,37 +23,46 @@ class PostsScreen extends HookConsumerWidget {
         );
     print(postData);
     final data = postData is List<dynamic> ? postData : [];
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColor.primaryWhiteGrey,
       ),
       body: ListView.builder(
-          itemCount: data.length,
-          itemBuilder: (context, index) {
-            return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  PostsScreenUserInfo(
-                    imageUrl:
-                        'https://images.unsplash.com/photo-1515513284006-9a59075694b7?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                    userName: 'userName',
-                    timeAgo: data[index].created_at,
-                  ),
-                  const Gap(10),
-                  Center(
-                    child: CachedNetworkImage(
-                      width: 340,
-                      imageUrl: data[index].imageUrl,
+        itemCount: data.length,
+        itemBuilder: (context, index) {
+          return FutureBuilder<UserInfo>(
+            future: ref
+                .read(postsScreenVMProvider.notifier)
+                .getFriendInfo(data[index].userId),
+            builder: (context, snapshot) {
+              final userInfo = snapshot.data;
+              return Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    PostsScreenUserInfo(
+                      imageUrl: userInfo?.imageUrl ?? '',
+                      userName: userInfo?.userName ?? '読み込み中...',
+                      timeAgo: data[index].created_at,
                     ),
-                  ),
-                  const Gap(14),
-                  const Divider(color: AppColor.dividerColor),
-                ],
-              ),
-            );
-          }),
+                    const Gap(10),
+                    Center(
+                      child: CachedNetworkImage(
+                        width: 340,
+                        imageUrl: data[index].imageUrl,
+                      ),
+                    ),
+                    const Gap(14),
+                    const Divider(color: AppColor.dividerColor),
+                  ],
+                ),
+              );
+            },
+          );
+        },
+      ),
     );
   }
 }

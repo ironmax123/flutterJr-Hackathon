@@ -40,12 +40,15 @@ class HomeScreenVM extends _$HomeScreenVM {
     final postRepo = ref.read(postRepoProvider);
 
     final postId = await postRepo.generatePostId();
+    DateTime getUTCNow() {
+      return DateTime.now().toUtc();
+    }
 
     final post = PostEntity(
       postId: postId,
       userId: user!.id,
       imageUrl: imageUrl,
-      created_at: DateTime.now(),
+      created_at: getUTCNow(),
     );
     await postRepo.createPost(post);
   }
