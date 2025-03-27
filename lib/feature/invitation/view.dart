@@ -60,7 +60,7 @@ class InvitationScreen extends HookConsumerWidget {
                 onApproved: () {
                   // はい が押された時の処理を入れる。
                   // 以下は例
-                  context.pop();
+                  context.go('/login');
                 },
               );
             },
