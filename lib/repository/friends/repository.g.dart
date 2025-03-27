@@ -22,23 +22,23 @@ final friendRepoProvider = AutoDisposeProvider<FriendRepo>.internal(
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef FriendRepoRef = AutoDisposeProviderRef<FriendRepo>;
-String _$postRepoCasheHash() => r'298201c37a698183912b42af42d9b4995aee7383';
+String _$friendRepoCasheHash() => r'b9b25849b887f8e503573cbfeffdde0857b2e166';
 
 /// キャッシュするためのProvider
 ///
-/// Copied from [PostRepoCashe].
-@ProviderFor(PostRepoCashe)
-final postRepoCasheProvider =
-    NotifierProvider<PostRepoCashe, Map<String, FriendEntity>>.internal(
-  PostRepoCashe.new,
-  name: r'postRepoCasheProvider',
+/// Copied from [FriendRepoCashe].
+@ProviderFor(FriendRepoCashe)
+final friendRepoCasheProvider =
+    NotifierProvider<FriendRepoCashe, Map<String, FriendEntity>>.internal(
+  FriendRepoCashe.new,
+  name: r'friendRepoCasheProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$postRepoCasheHash,
+      : _$friendRepoCasheHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$PostRepoCashe = Notifier<Map<String, FriendEntity>>;
+typedef _$FriendRepoCashe = Notifier<Map<String, FriendEntity>>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

@@ -21,8 +21,6 @@ class CameraTestPage extends HookWidget {
     final _controller = useState<CameraController?>(null);
     var image = useState<XFile?>(null);
     final _initializeControllerFuture = useState<Future<void>?>(null);
-    print(cameras.map((c) => c.lensDirection).toList()); // ログ出力
-    print(cameras.map((c) => c.name).toList()); // カメラの名称も出力
 
     void cameraValue(int i) async {
       await _controller.value?.dispose();

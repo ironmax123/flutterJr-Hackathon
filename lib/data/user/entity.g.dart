@@ -11,9 +11,6 @@ _$UserEntityImpl _$$UserEntityImplFromJson(Map<String, dynamic> json) =>
       id: json['id'] as String,
       username: json['username'] as String?,
       avatar_url: json['avatar_url'] as String?,
-      bookMarkIDs: (json['bookMarkIDs'] as List<dynamic>?)
-          ?.map((e) => e as String)
-          .toList(),
     );
 
 Map<String, dynamic> _$$UserEntityImplToJson(_$UserEntityImpl instance) =>
@@ -21,5 +18,4 @@ Map<String, dynamic> _$$UserEntityImplToJson(_$UserEntityImpl instance) =>
       'id': instance.id,
       'username': instance.username,
       'avatar_url': instance.avatar_url,
-      'bookMarkIDs': instance.bookMarkIDs,
     };

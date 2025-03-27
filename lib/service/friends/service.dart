@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:room_check/data/post/entity.dart';
+import 'package:room_check/data/friend/entity.dart';
 import 'package:room_check/supabase/provider.dart';
 import 'package:room_check/supabase/supabase.dart';
 import 'package:room_check/utils/result.dart';
@@ -43,14 +43,14 @@ class FriendService {
   }
 
   /// 投稿をsupabaseから取得
-  Future<Result<List<PostEntity>>> read() async {
+  Future<Result<List<FriendEntity>>> read() async {
     final uid = user!.id;
 
     final List<Map<String, dynamic>> response =
         await supabase.from('friend').select().eq('id', uid);
     try {
       return Result.ok(
-          response.map((data) => PostEntity.fromJson(data)).toList());
+          response.map((data) => FriendEntity.fromJson(data)).toList());
     } catch (e) {
       return Result.error(Exception(e));
     }

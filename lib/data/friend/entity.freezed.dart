@@ -21,6 +21,7 @@ FriendEntity _$FriendEntityFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$FriendEntity {
   String get id => throw _privateConstructorUsedError;
+  List<String?> get friends => throw _privateConstructorUsedError;
 
   /// Serializes this FriendEntity to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -38,7 +39,7 @@ abstract class $FriendEntityCopyWith<$Res> {
           FriendEntity value, $Res Function(FriendEntity) then) =
       _$FriendEntityCopyWithImpl<$Res, FriendEntity>;
   @useResult
-  $Res call({String id});
+  $Res call({String id, List<String?> friends});
 }
 
 /// @nodoc
@@ -57,12 +58,17 @@ class _$FriendEntityCopyWithImpl<$Res, $Val extends FriendEntity>
   @override
   $Res call({
     Object? id = null,
+    Object? friends = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
+      friends: null == friends
+          ? _value.friends
+          : friends // ignore: cast_nullable_to_non_nullable
+              as List<String?>,
     ) as $Val);
   }
 }
@@ -75,7 +81,7 @@ abstract class _$$FriendEntityImplCopyWith<$Res>
       __$$FriendEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id});
+  $Res call({String id, List<String?> friends});
 }
 
 /// @nodoc
@@ -92,12 +98,17 @@ class __$$FriendEntityImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
+    Object? friends = null,
   }) {
     return _then(_$FriendEntityImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
+      friends: null == friends
+          ? _value._friends
+          : friends // ignore: cast_nullable_to_non_nullable
+              as List<String?>,
     ));
   }
 }
@@ -105,17 +116,26 @@ class __$$FriendEntityImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$FriendEntityImpl implements _FriendEntity {
-  const _$FriendEntityImpl({required this.id});
+  const _$FriendEntityImpl(
+      {required this.id, required final List<String?> friends})
+      : _friends = friends;
 
   factory _$FriendEntityImpl.fromJson(Map<String, dynamic> json) =>
       _$$FriendEntityImplFromJson(json);
 
   @override
   final String id;
+  final List<String?> _friends;
+  @override
+  List<String?> get friends {
+    if (_friends is EqualUnmodifiableListView) return _friends;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_friends);
+  }
 
   @override
   String toString() {
-    return 'FriendEntity(id: $id)';
+    return 'FriendEntity(id: $id, friends: $friends)';
   }
 
   @override
@@ -123,12 +143,14 @@ class _$FriendEntityImpl implements _FriendEntity {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FriendEntityImpl &&
-            (identical(other.id, id) || other.id == id));
+            (identical(other.id, id) || other.id == id) &&
+            const DeepCollectionEquality().equals(other._friends, _friends));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id);
+  int get hashCode => Object.hash(
+      runtimeType, id, const DeepCollectionEquality().hash(_friends));
 
   /// Create a copy of FriendEntity
   /// with the given fields replaced by the non-null parameter values.
@@ -147,13 +169,17 @@ class _$FriendEntityImpl implements _FriendEntity {
 }
 
 abstract class _FriendEntity implements FriendEntity {
-  const factory _FriendEntity({required final String id}) = _$FriendEntityImpl;
+  const factory _FriendEntity(
+      {required final String id,
+      required final List<String?> friends}) = _$FriendEntityImpl;
 
   factory _FriendEntity.fromJson(Map<String, dynamic> json) =
       _$FriendEntityImpl.fromJson;
 
   @override
   String get id;
+  @override
+  List<String?> get friends;
 
   /// Create a copy of FriendEntity
   /// with the given fields replaced by the non-null parameter values.

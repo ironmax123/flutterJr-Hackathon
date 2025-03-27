@@ -7,6 +7,7 @@ part 'entity.g.dart';
 class FriendEntity with _$FriendEntity {
   const factory FriendEntity({
     required String id,
+    required List<String?> friends,
   }) = _FriendEntity;
 
   factory FriendEntity.fromJson(Map<String, dynamic> json) =>
