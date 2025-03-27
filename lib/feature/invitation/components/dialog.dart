@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:room_check/primary/utils/color.dart';
+import 'package:room_check/supabase/supabase.dart';
 
 /// はい/いいえ が選択できるバージョン
 Future showConfirmDialog(
@@ -46,9 +47,9 @@ Future showConfirmDialog(
                   child: Text(
                     content,
                     style: const TextStyle(
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.bold,
-                      ),
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
                 const Gap(24.0),
@@ -75,12 +76,12 @@ Future showConfirmDialog(
                       child: const Padding(
                         padding:
                             EdgeInsets.symmetric(vertical: 16, horizontal: 18),
-                        child: Text('いいえ',
-                             style: TextStyle(
-                               fontSize: 16.0,
-                               fontWeight: FontWeight.bold,
-                             ),
-
+                        child: Text(
+                          'いいえ',
+                          style: TextStyle(
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     ),
@@ -92,17 +93,20 @@ Future showConfirmDialog(
                         foregroundColor: AppColor.primaryWhite,
                         shape: const StadiumBorder(),
                       ),
-                      onPressed: () {
+                      onPressed: () async {
+                        await supabase.auth.signOut();
                         context.pop();
+                        context.go('/login');
                       },
                       child: const Padding(
                         padding:
                             EdgeInsets.symmetric(vertical: 16, horizontal: 18),
-                        child: Text('はい',
-                        style: TextStyle(
-                               fontSize: 16.0,
-                               fontWeight: FontWeight.bold,
-                             ),
+                        child: Text(
+                          'はい',
+                          style: TextStyle(
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     ),

@@ -57,11 +57,7 @@ class InvitationScreen extends HookConsumerWidget {
                 title: 'ログアウトしますか？',
                 // 好きな文字列を入れてください。
                 content: 'ログアウトすると再度ログインが必要です。',
-                onApproved: () async {
-                  // はい が押された時の処理を入れる。
-                  await supabase.auth.signOut();
-                  context.go('/login');
-                },
+                onApproved: () => context.pop(), 
               );
             },
             icon: const Icon(
