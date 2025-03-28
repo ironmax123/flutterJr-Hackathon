@@ -49,7 +49,7 @@ class InvationScreenProfile extends StatelessWidget {
         PrimaryGradientButton(
           outlineColor: AppColor.primaryBlack,
           gradient: GradientStyle.blueGradient,
-          fontSize: 14,
+          fontSize: 20,
           text: 'プロフィール変更',
           onPressed: () {
             showDialog(

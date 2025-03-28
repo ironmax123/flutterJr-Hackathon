@@ -39,7 +39,8 @@ class InvationScreenJoinFriend extends HookConsumerWidget {
             child: PrimaryGradientButton(
               outlineColor: AppColor.primaryWhite,
               gradient: GradientStyle.pinkGradient,
-              text: '参加する',
+              text: '追加する',
+              fontSize: 16,
               onPressed: () async {
                 ref.read(invitationSCreenVMProvider.notifier).addFriend(
                       controller.value.text,
@@ -98,6 +99,7 @@ class ImvationFriend extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        const SizedBox(width: double.infinity),
         const Text(
           'ともだちを追加',
           style: TextStyle(
@@ -106,16 +108,18 @@ class ImvationFriend extends StatelessWidget {
           ),
         ),
         const Gap(16),
-        PrimaryGradientButton(
-          outlineColor: AppColor.primaryWhite,
-          gradient: GradientStyle.pinkGradient,
-          text: 'QRコード読み取り',
-          fontSize: 12,
-          horizontal: 32,
-          onPressed: () async {
-            await scan(readData, typeData);
-            controller.text = await readData.value;
-          },
+        Center(
+          child: PrimaryGradientButton(
+            outlineColor: AppColor.primaryWhite,
+            gradient: GradientStyle.pinkGradient,
+            text: 'QRコード読み取り',
+            fontSize: 20,
+            horizontal: 32,
+            onPressed: () async {
+              await scan(readData, typeData);
+              controller.text = await readData.value;
+            },
+          ),
         ),
       ],
     );
