@@ -73,4 +73,18 @@ class PostService {
       return Result.error(Exception(e.toString()));
     }
   }
+
+  Future<Result<List<PostEntity>>> readUserPosts(String userId) async {
+    try {
+      final List<Map<String, dynamic>> response = await supabase
+          .from('room_photo')
+          .select()
+          .eq('userId', userId)
+          .order('created_at', ascending: false);
+      return Result.ok(
+          response.map((data) => PostEntity.fromJson(data)).toList());
+    } catch (e) {
+      return Result.error(Exception(e.toString()));
+    }
+  }
 }

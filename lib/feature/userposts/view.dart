@@ -4,10 +4,13 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:room_check/data/post/entity.dart';
 import 'package:room_check/feature/posts/vm.dart';
 import 'package:room_check/feature/userposts/components/user_only_info.dart';
+import 'package:room_check/feature/userposts/vm.dart';
 import 'package:room_check/primary/components/user_icon.dart';
 import 'package:room_check/primary/utils/color.dart';
+import 'package:room_check/supabase/supabase.dart';
 import 'package:room_check/utils/timeago.dart';
 
 class UserPostsScreen extends HookConsumerWidget {
@@ -15,15 +18,21 @@ class UserPostsScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final postData = ref.watch(postsScreenVMProvider).when(
-          data: (data) => data.postEntity,
-          loading: () => 'roading',
-          error: (err, stack) {
-            log('error: $err');
-            return 'error';
-          },
-        );
-    final data = postData is List<dynamic> ? postData : [];
+    final postData =
+        ref.watch(userPostsScreenVMProvider.notifier).readUserPosts(user!.id);
+    final userData =
+        ref.read(userPostsScreenVMProvider.notifier).getFriendInfo(user!.id);
+    print(userData);
+    List<PostEntity>? data = [];
+    Future<void> fechData() async {
+      final postData1 = await ref
+          .watch(userPostsScreenVMProvider.notifier)
+          .readUserPosts(user!.id);
+      data = postData1.postEntity;
+      print(data);
+    }
+
+    print(user!.id);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColor.primaryWhiteGrey,
@@ -46,7 +55,7 @@ class UserPostsScreen extends HookConsumerWidget {
           const Gap(5),
           Expanded(
             child: ListView.builder(
-                itemCount: data.length,
+                itemCount: 1,
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -56,7 +65,7 @@ class UserPostsScreen extends HookConsumerWidget {
                         Padding(
                           padding: const EdgeInsets.only(left: 10),
                           child: Text(
-                            createTimeAgoString(data[index].created_at),
+                            createTimeAgoString(DateTime.now()),
                             style: const TextStyle(
                               color: AppColor.primaryBlackGrey,
                               fontSize: 14,
@@ -64,12 +73,18 @@ class UserPostsScreen extends HookConsumerWidget {
                           ),
                         ),
                         const Gap(8),
-                        Center(
+                        ElevatedButton(
+                          onPressed: () => fechData(),
+                          child: Text('data'),
+                        ),
+
+                        /*Center(
                           child: CachedNetworkImage(
                             width: 340,
                             imageUrl: data[index].imageUrl,
                           ),
                         ),
+                        */
                         const Gap(14),
                         const Divider(color: AppColor.dividerColor),
                       ],
