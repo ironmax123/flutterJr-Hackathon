@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:room_check/feature/invitation/view.dart';
+import 'package:room_check/feature/posts/view.dart';
+import 'package:room_check/feature/userposts/view.dart';
 
 import 'package:room_check/main.dart';
 import 'package:room_check/primary/utils/color.dart';
+import 'package:room_check/supabase/supabase.dart';
 
 /// flutter run --target lib/dev_main.dart
 Future<void> main() async {
@@ -32,7 +35,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         scaffoldBackgroundColor: AppColor.primaryWhite,
       ),
-      home: const InvitationScreen(),
+      home: UserPostsScreen(userId: user!.id),
     );
   }
 }
