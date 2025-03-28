@@ -11,21 +11,25 @@ import 'package:room_check/supabase/supabase.dart';
 import 'package:room_check/utils/timeago.dart';
 
 class UserPostsScreen extends HookConsumerWidget {
-  const UserPostsScreen({super.key});
+  final String userId;
+  const UserPostsScreen({
+    super.key,
+    required this.userId,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final userDataFuture =
-        ref.read(userPostsScreenVMProvider.notifier).getFriendInfo(user!.id);
+        ref.read(userPostsScreenVMProvider.notifier).getFriendInfo(userId);
     final dateData =
-        ref.read(userPostsScreenVMProvider.notifier).consecutiveDate(user!.id);
+        ref.read(userPostsScreenVMProvider.notifier).consecutiveDate(userId);
     final consecutiveDate = useState("読み込み中...");
 
     final data = useState<List<PostEntity>?>([]);
     Future<void> fetchPosts() async {
       final postState = await ref
           .read(userPostsScreenVMProvider.notifier)
-          .readUserPosts(user!.id);
+          .readUserPosts(userId);
       data.value = postState.postEntity; // 更新
       consecutiveDate.value = await dateData;
     }

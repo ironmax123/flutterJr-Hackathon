@@ -45,6 +45,7 @@ class PostsScreen extends HookConsumerWidget {
                       imageUrl: userInfo?.imageUrl ?? '',
                       userName: userInfo?.userName ?? '読み込み中...',
                       timeAgo: data[index].created_at,
+                      userId: userInfo?.userId ?? '',
                     ),
                     const Gap(10),
                     Center(
