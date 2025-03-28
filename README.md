@@ -1,12 +1,33 @@
-# room_check
-アーキテクチャ；MVVM+repository
+# ピカトモ
+アーキテクチャ: MVVM+repository
+バックエンド：
 
-## 技術スタック
-Flutter/supabase
+# アプリについて
+※画像は開発段階を含みます
+## ホーム画面
+- 10分間のタイマー
+- カメラ
+10分経過すると自動投稿される
+<img src='https://github.com/user-attachments/assets/b305be0c-d8fb-4424-bbc5-e417d2843e91' width=30%>
 
-# 実行
-sample_main.dart->sampleプロジェクト立ち上げ</br>
-mian.dart->go_routerを使ったプロジェクトの立ち上げ
+## 招待画面
+- 自分の情報の更新
+- 友達リスト
+- 友達の追加
+    - QRコード
+    - SNSシェア機能
+    - 文字入力
+![スクリーンショット 2025-03-28 23 22 27](https://github.com/user-attachments/assets/638e4db3-f616-41cc-b8f8-c140701e064b)
+
+## 友達の投稿一覧
+- 友達の投稿が一覧で表示される
+<img src='https://github.com/user-attachments/assets/897ec6ae-1257-443d-9d5c-7bb978527730' width=30%>
+
+## アカウントごとの投稿
+- 投稿一覧でアイコンとかをおしたら遷移する
+- ともだちリストの名前からも遷移できる
+<img src='https://github.com/user-attachments/assets/79f39325-40bc-4748-81fc-5842594ee544' width=30%>
+
 
 # 主に使用するパッケージ
 ### remi
@@ -35,4 +56,6 @@ mian.dart->go_routerを使ったプロジェクトの立ち上げ
 
 
 ## APK
-[インストールはこちら](https://drive.google.com/drive/folders/1Se9GuyzcEqBWxW9XuYBVr-Ffn2a9A6Zr)
+Android⭕️
+iOS❌
+[ダウンロードはこちら](https://drive.google.com/drive/folders/1Se9GuyzcEqBWxW9XuYBVr-Ffn2a9A6Zr)
