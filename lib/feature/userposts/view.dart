@@ -7,7 +7,6 @@ import 'package:room_check/data/post/entity.dart';
 import 'package:room_check/feature/userposts/components/user_only_info.dart';
 import 'package:room_check/feature/userposts/vm.dart';
 import 'package:room_check/primary/utils/color.dart';
-import 'package:room_check/supabase/supabase.dart';
 import 'package:room_check/utils/timeago.dart';
 
 class UserPostsScreen extends HookConsumerWidget {

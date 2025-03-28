@@ -40,6 +40,12 @@ class HomeScreenLimit extends HookConsumerWidget {
       ref.read(homeScreenVMProvider.notifier).createPost(imageUrl.value);
     }
 
+    String formatTime(int seconds) {
+      final minutes = (seconds ~/ 60).toString().padLeft(2, '0');
+      final remainingSeconds = (seconds % 60).toString().padLeft(2, '0');
+      return '$minutes:$remainingSeconds';
+    }
+
     useEffect(() {
       Timer? timer;
       if (isStart.value && totalTime.value > 0) {
@@ -106,7 +112,7 @@ class HomeScreenLimit extends HookConsumerWidget {
             ),
           ),
           Text(
-            '${(limitTime.value * totalTime.value).ceil()} 秒',
+            formatTime((limitTime.value * totalTime.value).ceil()),
             style: const TextStyle(
               fontSize: 54,
               fontWeight: FontWeight.bold,
