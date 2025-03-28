@@ -52,6 +52,7 @@ class InvitationScreen extends HookConsumerWidget {
           },
         );
 
+    print(friendsId);
     final friendIdsList = useState<List<String>>([]);
 
     final friendList = useState<List<String>>([]);
