@@ -95,10 +95,10 @@ class ImvationFriend extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return Column(
       children: [
         const Text(
-          'ともだちを追加する',
+          'ともだちを追加',
           style: TextStyle(
             color: AppColor.primaryBlack,
             fontSize: 24,
