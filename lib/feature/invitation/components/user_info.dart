@@ -29,8 +29,8 @@ class InvationScreenProfile extends StatelessWidget {
               children: [
                 PrimaryUserIcon(
                   imageUrl: imageUrl ?? 'null',
-                  width: 68,
-                  heigt: 68,
+                  width: 54,
+                  heigt: 54,
                 ),
                 const Gap(24),
                 Text(
@@ -38,7 +38,7 @@ class InvationScreenProfile extends StatelessWidget {
                   style: const TextStyle(
                     color: AppColor.primaryBlack,
                     fontWeight: FontWeight.bold,
-                    fontSize: 24,
+                    fontSize: 20,
                   ),
                 )
               ],
@@ -46,23 +46,20 @@ class InvationScreenProfile extends StatelessWidget {
           ),
         ),
         const Gap(12),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 32),
-          child: PrimaryGradientButton(
-            outlineColor: AppColor.primaryBlack,
-            gradient: GradientStyle.blueGradient,
-            fontSize: 20,
-            text: 'プロフィールを更新する',
-            onPressed: () {
-              showDialog(
-                context: context,
-                barrierDismissible: false,
-                builder: (BuildContext context) => AccountUpdateProfileDialog(
-                  userName: userName,
-                ),
-              );
-            },
-          ),
+        PrimaryGradientButton(
+          outlineColor: AppColor.primaryBlack,
+          gradient: GradientStyle.blueGradient,
+          fontSize: 14,
+          text: 'プロフィール変更',
+          onPressed: () {
+            showDialog(
+              context: context,
+              barrierDismissible: false,
+              builder: (BuildContext context) => AccountUpdateProfileDialog(
+                userName: userName,
+              ),
+            );
+          },
         ),
       ],
     );

@@ -20,7 +20,7 @@ class InvitationScreenFriendList extends StatelessWidget {
             '共有されるともだち',
             style: TextStyle(
               fontWeight: FontWeight.bold,
-              fontSize: 24,
+              fontSize: 20,
               color: AppColor.primaryBlack,
             ),
           ),
