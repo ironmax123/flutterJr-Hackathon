@@ -1,4 +1,6 @@
 # ピカトモ
+<img src='https://github.com/user-attachments/assets/1a318899-6de2-4f86-8eb8-39572588c8a4' width=20%>
+
 アーキテクチャ: MVVM+repository</br>
 バックエンド：<img src='https://github.com/user-attachments/assets/a1d87e5a-ecbe-4c67-ba21-da1af5f4f8d4' width=10%>
 
@@ -9,6 +11,7 @@
 - カメラ
 10分経過すると自動投稿される
 <img src='https://github.com/user-attachments/assets/b305be0c-d8fb-4424-bbc5-e417d2843e91' width=30%>
+
 
 ## 招待画面
 - 自分の情報の更新
