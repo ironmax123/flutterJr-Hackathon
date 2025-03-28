@@ -23,8 +23,16 @@ mian.dart->go_routerを使ったプロジェクトの立ち上げ
 
 ### 画像
 - cached_network_image: ^3.4.1
-- permission_handler: ^11.4.0
-- camera: ^0.11.0+2ああ
+- camera: ^0.11.0+2
+
+### QRcode
+- barcode_scan2: ^4.5.0
+- qr_flutter: ^4.1.0
+
+### 音声
+- just_audio: ^0.9.42
+- audio_session: ^0.1.21
+
 
 ## APK
 [インストールはこちら](https://drive.google.com/drive/folders/1Se9GuyzcEqBWxW9XuYBVr-Ffn2a9A6Zr)
