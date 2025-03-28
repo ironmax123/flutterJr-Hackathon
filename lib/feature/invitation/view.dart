@@ -103,26 +103,31 @@ class InvitationScreen extends HookConsumerWidget {
           )
         ],
       ),
-      body: ListView(
-        children: [
-          InvationScreenProfile(
-            imageUrl: iconUrl,
-            userName: userName,
-          ),
-          const Divider(
-            color: AppColor.dividerColor,
-          ),
-          InvitationScreenFriendList(
-            friendList: friendList.value,
-          ),
-          const Divider(
-            color: AppColor.dividerColor,
-          ),
-          InvitationScreenAddFriend(
-            uid: uid.value,
-            name: userName,
-          ),
-        ],
+      body: RefreshIndicator(
+        onRefresh: () async {
+          ref.read(invitationSCreenVMProvider.notifier).refresh();
+        },
+        child: ListView(
+          children: [
+            InvationScreenProfile(
+              imageUrl: iconUrl,
+              userName: userName,
+            ),
+            const Divider(
+              color: AppColor.dividerColor,
+            ),
+            InvitationScreenFriendList(
+              friendList: friendList.value,
+            ),
+            const Divider(
+              color: AppColor.dividerColor,
+            ),
+            InvitationScreenAddFriend(
+              uid: uid.value,
+              name: userName,
+            ),
+          ],
+        ),
       ),
     );
   }

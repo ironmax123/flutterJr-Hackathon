@@ -90,6 +90,21 @@ class InvitationSCreenVM extends _$InvitationSCreenVM {
     }
   }
 
+  void refresh() async {
+    final friendRepo = ref.read(friendRepoProvider);
+    final friendsRead = await friendRepo.readFriend();
+    final friendsValue =
+        switch (friendsRead) { Ok(:final value) => value, Error() => null };
+
+    if (state.value != null) {
+      // 状態を更新
+      state = AsyncValue.data(state.value!.copyWith(
+          friendEntity: state.value!.friendEntity?.copyWith(
+        friends: friendsValue != null ? friendsValue.friends : [],
+      )));
+    }
+  }
+
   Future<String?> getFriendName(userId) async {
     final userRepo = ref.read(userRepoProvider);
     final result = await userRepo.getUsers(userId);
