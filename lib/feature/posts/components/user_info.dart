@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 import 'package:room_check/primary/components/user_icon.dart';
 import 'package:room_check/primary/utils/color.dart';
 import 'package:room_check/utils/timeago.dart';
@@ -8,11 +9,13 @@ class PostsScreenUserInfo extends StatelessWidget {
   final String imageUrl;
   final String userName;
   final DateTime timeAgo;
+  final String userId;
   const PostsScreenUserInfo({
     super.key,
     required this.imageUrl,
     required this.userName,
     required this.timeAgo,
+    required this.userId,
   });
 
   @override
@@ -20,7 +23,7 @@ class PostsScreenUserInfo extends StatelessWidget {
     return Row(
       children: [
         PrimaryUserIcon(
-          onTap: () {},
+          onTap: () => context.push('/userposts', extra: userId),
           imageUrl: imageUrl,
         ),
         const Gap(10),

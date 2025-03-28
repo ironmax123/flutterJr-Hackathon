@@ -6,7 +6,7 @@ part of 'vm.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$userPostsScreenVMHash() => r'bc3ea1c09d4790056575773be7d63445565c39f6';
+String _$userPostsScreenVMHash() => r'8f64fb4c03a8bf6d72381c55b6bb3c900d71fea0';
 
 /// See also [UserPostsScreenVM].
 @ProviderFor(UserPostsScreenVM)
