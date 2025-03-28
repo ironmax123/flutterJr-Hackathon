@@ -25,3 +25,6 @@ mian.dart->go_routerを使ったプロジェクトの立ち上げ
 - cached_network_image: ^3.4.1
 - permission_handler: ^11.4.0
 - camera: ^0.11.0+2ああ
+
+## APK
+[インストールはこちら](https://drive.google.com/drive/folders/1Se9GuyzcEqBWxW9XuYBVr-Ffn2a9A6Zr)
