@@ -6,22 +6,21 @@ part of 'vm.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$invitationSCreenVMHash() =>
-    r'6ef4f69747fff78d3e470c9b0044765cd8e431f3';
+String _$userPostsScreenVMHash() => r'bc3ea1c09d4790056575773be7d63445565c39f6';
 
-/// See also [InvitationSCreenVM].
-@ProviderFor(InvitationSCreenVM)
-final invitationSCreenVMProvider = AutoDisposeAsyncNotifierProvider<
-    InvitationSCreenVM, InvitationState>.internal(
-  InvitationSCreenVM.new,
-  name: r'invitationSCreenVMProvider',
+/// See also [UserPostsScreenVM].
+@ProviderFor(UserPostsScreenVM)
+final userPostsScreenVMProvider =
+    AutoDisposeNotifierProvider<UserPostsScreenVM, void>.internal(
+  UserPostsScreenVM.new,
+  name: r'userPostsScreenVMProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$invitationSCreenVMHash,
+      : _$userPostsScreenVMHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$InvitationSCreenVM = AutoDisposeAsyncNotifier<InvitationState>;
+typedef _$UserPostsScreenVM = AutoDisposeNotifier<void>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

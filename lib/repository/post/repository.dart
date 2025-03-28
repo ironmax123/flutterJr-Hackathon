@@ -62,6 +62,26 @@ class PostRepo {
         return Result.error(result.error);
     }
   }
+  Future<Result<List<PostEntity>>> readUserPosts( String userId,
+      {bool shouldRefresh = false, String? postId}) async {
+    final cacheData = _ref.read(postRepoCasheProvider)[postId];
+    final useCache = !shouldRefresh && cacheData != null;
+    if (useCache) {
+      return Result.ok([cacheData]);
+    }
+    final result = await _postService.readUserPosts(userId);
+    // final socket = await _postService.socket();
+
+    switch (result) {
+      case Ok(:final value):
+        for (var post in value) {
+          _ref.read(postRepoCasheProvider.notifier).update(post.postId, post);
+        }
+        return Result.ok(value);
+      case Error():
+        return Result.error(result.error);
+    }
+  }
 
   /// create(作成メソッド)VMから[PostEntity]を受け取って投稿を作成する
   Future<Result<List<PostEntity>>> createPost(PostEntity post) async {
