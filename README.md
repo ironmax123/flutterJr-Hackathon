@@ -2,7 +2,7 @@
 <img src='https://github.com/user-attachments/assets/1a318899-6de2-4f86-8eb8-39572588c8a4' width=20%>
 
 アーキテクチャ: MVVM+repository</br>
-バックエンド：<img src='https://github.com/user-attachments/assets/a1d87e5a-ecbe-4c67-ba21-da1af5f4f8d4' width=10%>
+バックエンド：<img src='https://github.com/user-attachments/assets/a1d87e5a-ecbe-4c67-ba21-da1af5f4f8d4' width=25%>
 
 # アプリについて
 ※画像は開発段階を含みます
