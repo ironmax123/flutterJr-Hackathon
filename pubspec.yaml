@@ -43,6 +43,10 @@ dependencies:
   qr_flutter: ^4.1.0
   camera: ^0.11.1
   timeago: ^3.7.0
+  mobile_scanner: ^6.0.7
+  barcode_scan2: ^4.5.0
+  share_plus: ^10.1.4
+  flutter_launcher_icons: ^0.14.3
 
 dev_dependencies:
   flutter_test:
@@ -56,3 +60,8 @@ flutter:
   uses-material-design: true
   assets:
     - .env
+
+flutter_icons:       
+  android: true
+  ios: true
+  image_path: "assets/images/icon_image.png"

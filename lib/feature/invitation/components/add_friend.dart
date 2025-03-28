@@ -2,26 +2,41 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import 'package:room_check/feature/invitation/scan/scan.dart';
+import 'package:room_check/feature/invitation/vm.dart';
 import 'package:room_check/primary/components/gradient_button.dart';
 import 'package:room_check/primary/utils/color.dart';
 import 'package:room_check/primary/utils/gradient_style.dart';
+import 'package:room_check/supabase/supabase.dart';
+import 'package:share_plus/share_plus.dart';
 
-class InvitationScreenAddFriend extends StatelessWidget {
+class InvitationScreenAddFriend extends HookConsumerWidget {
   final String uid;
+  final String? name;
   const InvitationScreenAddFriend({
     super.key,
     required this.uid,
+    required this.name,
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final controller = useTextEditingController();
+    final readData = useState('');
+    final typeData = useState('');
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const ImvationFriend(),
+          ImvationFriend(
+            readData: readData,
+            typeData: typeData,
+            controller: controller,
+          ),
           Center(
             child: QrImageView(
               data: uid,
@@ -29,17 +44,26 @@ class InvitationScreenAddFriend extends StatelessWidget {
             ),
           ),
           const Gap(14),
-          Center(child: ShareUid(uid: uid)),
+          Center(
+            child: ShareUid(
+              uid: uid,
+              name: name,
+            ),
+          ),
           const Gap(32),
-          const InputUid(),
+          InputUid(controller: controller),
           const Gap(12),
           Center(
             child: PrimaryGradientButton(
               outlineColor: AppColor.primaryWhite,
               gradient: GradientStyle.pinkGradient,
               text: '参加する',
-              onPressed: () {
-                //TODO: 参加する押下時の処理追加
+              onPressed: () async {
+                ref.read(invitationSCreenVMProvider.notifier).addFriend(
+                      controller.value.text,
+                      user!.id,
+                    );
+                controller.clear();
               },
             ),
           )
@@ -51,9 +75,11 @@ class InvitationScreenAddFriend extends StatelessWidget {
 
 class ShareUid extends StatelessWidget {
   final String uid;
+  final String? name;
   const ShareUid({
     super.key,
     required this.uid,
+    required this.name,
   });
 
   @override
@@ -97,7 +123,12 @@ class ShareUid extends StatelessWidget {
           const Gap(8),
           IconButton(
             onPressed: () {
-              //TODO: SNSシェア追加
+              final text = "$nameから誘いが来ています \n \n$uid\n \nでピカトモに追加しよう!!!";
+              const subject = "共有先を選択";
+              Share.share(
+                text,
+                subject: subject,
+              );
             },
             icon: const Icon(
               Icons.share_rounded,
@@ -110,11 +141,14 @@ class ShareUid extends StatelessWidget {
 }
 
 class InputUid extends HookWidget {
-  const InputUid({super.key});
+  final TextEditingController controller;
+  const InputUid({
+    super.key,
+    required this.controller,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final controller = useTextEditingController();
     return TextField(
       controller: controller,
       onTapOutside: (e) {
@@ -133,7 +167,15 @@ class InputUid extends HookWidget {
 }
 
 class ImvationFriend extends StatelessWidget {
-  const ImvationFriend({super.key});
+  final ValueNotifier readData;
+  final ValueNotifier typeData;
+  final TextEditingController controller;
+  const ImvationFriend({
+    super.key,
+    required this.readData,
+    required this.typeData,
+    required this.controller,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -153,8 +195,9 @@ class ImvationFriend extends StatelessWidget {
           text: 'QRコード読み取り',
           fontSize: 12,
           horizontal: 32,
-          onPressed: () {
-            //TODO: QR読み取り処理追加
+          onPressed: () async {
+            await scan(readData, typeData);
+            controller.text = await readData.value;
           },
         ),
       ],

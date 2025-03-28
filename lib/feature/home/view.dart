@@ -13,7 +13,7 @@ import 'package:room_check/feature/home/components/buttons.dart';
 import 'package:room_check/feature/home/components/limit.dart';
 import 'package:room_check/feature/home/vm.dart';
 import 'package:room_check/primary/components/user_icon.dart';
-import 'package:room_check/repository/user/repo.dart';
+import 'package:room_check/repository/user/repository.dart';
 import 'package:room_check/test/camera/widgets/camera_preview.dart';
 
 class HomeScreen extends HookConsumerWidget {
@@ -91,16 +91,18 @@ class HomeScreen extends HookConsumerWidget {
                 totalTime: totatlTime,
               ),
               const Gap(50),
-              (imagePath.value != null)
-                  ? Image.file(File(imagePath.value!))
-                  : (_controller.value != null &&
-                          _initializeControllerFuture.value != null)
-                      ? CameraPre(
-                          controller: _controller.value!,
-                          initializeControllerFuture:
-                              _initializeControllerFuture.value!,
-                        )
-                      : Container(),
+              isStart.value
+                  ? (imagePath.value != null)
+                      ? Image.file(File(imagePath.value!))
+                      : (_controller.value != null &&
+                              _initializeControllerFuture.value != null)
+                          ? CameraPre(
+                              controller: _controller.value!,
+                              initializeControllerFuture:
+                                  _initializeControllerFuture.value!,
+                            )
+                          : Container()
+                  : Container(),
               const Gap(48),
               HomeScreenButtons(
                 isStart: isStart,

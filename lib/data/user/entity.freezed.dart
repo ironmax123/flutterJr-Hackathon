@@ -23,7 +23,6 @@ mixin _$UserEntity {
   String get id => throw _privateConstructorUsedError;
   String? get username => throw _privateConstructorUsedError;
   String? get avatar_url => throw _privateConstructorUsedError;
-  List<String>? get bookMarkIDs => throw _privateConstructorUsedError;
 
   /// Serializes this UserEntity to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -41,11 +40,7 @@ abstract class $UserEntityCopyWith<$Res> {
           UserEntity value, $Res Function(UserEntity) then) =
       _$UserEntityCopyWithImpl<$Res, UserEntity>;
   @useResult
-  $Res call(
-      {String id,
-      String? username,
-      String? avatar_url,
-      List<String>? bookMarkIDs});
+  $Res call({String id, String? username, String? avatar_url});
 }
 
 /// @nodoc
@@ -66,7 +61,6 @@ class _$UserEntityCopyWithImpl<$Res, $Val extends UserEntity>
     Object? id = null,
     Object? username = freezed,
     Object? avatar_url = freezed,
-    Object? bookMarkIDs = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -81,10 +75,6 @@ class _$UserEntityCopyWithImpl<$Res, $Val extends UserEntity>
           ? _value.avatar_url
           : avatar_url // ignore: cast_nullable_to_non_nullable
               as String?,
-      bookMarkIDs: freezed == bookMarkIDs
-          ? _value.bookMarkIDs
-          : bookMarkIDs // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
     ) as $Val);
   }
 }
@@ -97,11 +87,7 @@ abstract class _$$UserEntityImplCopyWith<$Res>
       __$$UserEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String id,
-      String? username,
-      String? avatar_url,
-      List<String>? bookMarkIDs});
+  $Res call({String id, String? username, String? avatar_url});
 }
 
 /// @nodoc
@@ -120,7 +106,6 @@ class __$$UserEntityImplCopyWithImpl<$Res>
     Object? id = null,
     Object? username = freezed,
     Object? avatar_url = freezed,
-    Object? bookMarkIDs = freezed,
   }) {
     return _then(_$UserEntityImpl(
       id: null == id
@@ -135,10 +120,6 @@ class __$$UserEntityImplCopyWithImpl<$Res>
           ? _value.avatar_url
           : avatar_url // ignore: cast_nullable_to_non_nullable
               as String?,
-      bookMarkIDs: freezed == bookMarkIDs
-          ? _value._bookMarkIDs
-          : bookMarkIDs // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
     ));
   }
 }
@@ -147,11 +128,7 @@ class __$$UserEntityImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$UserEntityImpl implements _UserEntity {
   const _$UserEntityImpl(
-      {required this.id,
-      required this.username,
-      required this.avatar_url,
-      required final List<String>? bookMarkIDs})
-      : _bookMarkIDs = bookMarkIDs;
+      {required this.id, required this.username, required this.avatar_url});
 
   factory _$UserEntityImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserEntityImplFromJson(json);
@@ -162,19 +139,10 @@ class _$UserEntityImpl implements _UserEntity {
   final String? username;
   @override
   final String? avatar_url;
-  final List<String>? _bookMarkIDs;
-  @override
-  List<String>? get bookMarkIDs {
-    final value = _bookMarkIDs;
-    if (value == null) return null;
-    if (_bookMarkIDs is EqualUnmodifiableListView) return _bookMarkIDs;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
 
   @override
   String toString() {
-    return 'UserEntity(id: $id, username: $username, avatar_url: $avatar_url, bookMarkIDs: $bookMarkIDs)';
+    return 'UserEntity(id: $id, username: $username, avatar_url: $avatar_url)';
   }
 
   @override
@@ -186,15 +154,12 @@ class _$UserEntityImpl implements _UserEntity {
             (identical(other.username, username) ||
                 other.username == username) &&
             (identical(other.avatar_url, avatar_url) ||
-                other.avatar_url == avatar_url) &&
-            const DeepCollectionEquality()
-                .equals(other._bookMarkIDs, _bookMarkIDs));
+                other.avatar_url == avatar_url));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, username, avatar_url,
-      const DeepCollectionEquality().hash(_bookMarkIDs));
+  int get hashCode => Object.hash(runtimeType, id, username, avatar_url);
 
   /// Create a copy of UserEntity
   /// with the given fields replaced by the non-null parameter values.
@@ -216,8 +181,7 @@ abstract class _UserEntity implements UserEntity {
   const factory _UserEntity(
       {required final String id,
       required final String? username,
-      required final String? avatar_url,
-      required final List<String>? bookMarkIDs}) = _$UserEntityImpl;
+      required final String? avatar_url}) = _$UserEntityImpl;
 
   factory _UserEntity.fromJson(Map<String, dynamic> json) =
       _$UserEntityImpl.fromJson;
@@ -228,8 +192,6 @@ abstract class _UserEntity implements UserEntity {
   String? get username;
   @override
   String? get avatar_url;
-  @override
-  List<String>? get bookMarkIDs;
 
   /// Create a copy of UserEntity
   /// with the given fields replaced by the non-null parameter values.

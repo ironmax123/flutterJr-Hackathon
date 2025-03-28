@@ -6,7 +6,7 @@ import 'package:room_check/data/user/entity.dart';
 import 'package:room_check/service/user/service.dart';
 import 'package:room_check/utils/result.dart';
 
-part 'repo.g.dart';
+part 'repository.g.dart';
 
 @riverpod
 UserRepo userRepo(Ref ref) => UserRepo(
@@ -73,6 +73,8 @@ class UserRepo {
     bool shouldRefresh = false,
   }) async {
     final result = await _userService.getCurrentUser();
+
+    await _userService.updateUserInfo(userId, newName, newIconUrl);
     switch (result) {
       case Ok(:final value):
         _ref.read(userRepoCasheProvider.notifier).update(userId, value);
@@ -82,7 +84,7 @@ class UserRepo {
     }
   }
 
-  Future<Result> getUsers(String uid) async {
+  Future<Result<List<UserEntity>>> getUsers(String uid) async {
     final result = await _userService.getUsers(uid);
     switch (result) {
       case Ok(:final value):
