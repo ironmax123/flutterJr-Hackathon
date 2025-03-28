@@ -64,6 +64,12 @@ class AudioTestPage extends HookWidget {
                 playSound(player, path);
               },
               child: const Text('制限時間音')),
+          ElevatedButton(
+              onPressed: () {
+                final path = Assets.audio.shutter;
+                playSound(player, path);
+              },
+              child: const Text('シャッター音')),
         ]),
       ),
     );

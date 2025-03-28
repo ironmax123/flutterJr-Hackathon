@@ -3,7 +3,10 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:just_audio/just_audio.dart';
+import 'package:room_check/feature/home/components/audio.dart';
 import 'package:room_check/feature/home/vm.dart';
+import 'package:room_check/gen/assets.gen.dart';
 import 'package:room_check/primary/utils/color.dart';
 import 'package:room_check/repository/post/repository.dart';
 
@@ -26,6 +29,8 @@ class HomeScreenLimit extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final limitTime = useState<double>(1.0); // 進捗を1.0(100%)からスタート
     final imageUrl = useState<String?>(null);
+    final player = useMemoized(() => AudioPlayer());
+    final player2 = useMemoized(() => AudioPlayer());
 
     Future<void> upLoad() async {
       imageUrl.value =
@@ -38,9 +43,34 @@ class HomeScreenLimit extends HookConsumerWidget {
     useEffect(() {
       Timer? timer;
       if (isStart.value && totalTime.value > 0) {
+        final path = Assets.audio.limitTime;
+        playLoopSound(player, path);
+        final limit10 = Assets.audio.limit10m;
+        playSound(player2, limit10);
         timer = Timer.periodic(const Duration(seconds: 1), (timer) async {
           if (limitTime.value > 0) {
             limitTime.value -= 1 / totalTime.value;
+            final remainingTime = (limitTime.value * totalTime.value).ceil();
+            if (remainingTime == 300) {
+              final path1 = Assets.audio.limit5;
+              playSound(player2, path1);
+            }
+            if (remainingTime == 180) {
+              final path1 = Assets.audio.limit3;
+              playSound(player2, path1);
+            }
+            if (remainingTime == 60) {
+              final path1 = Assets.audio.limit1;
+              playSound(player2, path1);
+            }
+            if (remainingTime == 30) {
+              final path1 = Assets.audio.limit30;
+              playSound(player2, path1);
+            }
+            if (remainingTime == 10) {
+              final path1 = Assets.audio.limit10s;
+              playSound(player2, path1);
+            }
           } else {
             await Future.microtask(() async {
               if (controller.value != null) {
@@ -48,7 +78,9 @@ class HomeScreenLimit extends HookConsumerWidget {
                 imagePath.value = image.value?.path;
               }
             });
-
+            player.stop();
+            final path = Assets.audio.shutter;
+            await playSound(player2, path);
             timer.cancel();
             await upLoad();
           }

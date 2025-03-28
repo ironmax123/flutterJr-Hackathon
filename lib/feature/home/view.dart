@@ -30,7 +30,7 @@ class HomeScreen extends HookConsumerWidget {
     var image = useState<XFile?>(null);
     final _initializeControllerFuture = useState<Future<void>?>(null);
     final isStart = useState(false);
-    final totatlTime = useState(20);
+    final totatlTime = useState(600);
     void cameraValue(int i) async {
       await _controller.value?.dispose();
       _controller.value = CameraController(

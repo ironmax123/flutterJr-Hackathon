@@ -31,6 +31,9 @@ class $AssetsAudioGen {
   /// File path: assets/audio/limit_time.mp3
   String get limitTime => 'assets/audio/limit_time.mp3';
 
+  /// File path: assets/audio/shutter.mp3
+  String get shutter => 'assets/audio/shutter.mp3';
+
   /// List of all assets
   List<String> get values => [
     limit10m,
@@ -40,6 +43,7 @@ class $AssetsAudioGen {
     limit30,
     limit5,
     limitTime,
+    shutter,
   ];
 }
 
