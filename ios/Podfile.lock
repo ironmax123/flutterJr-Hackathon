@@ -1,6 +1,8 @@
 PODS:
   - app_links (0.0.2):
     - Flutter
+  - audio_session (0.0.1):
+    - Flutter
   - barcode_scan2 (0.0.1):
     - Flutter
     - MTBBarcodeScanner
@@ -35,6 +37,9 @@ PODS:
   - GTMSessionFetcher/Core (3.5.0)
   - image_picker_ios (0.0.1):
     - Flutter
+  - just_audio (0.0.1):
+    - Flutter
+    - FlutterMacOS
   - MLImage (1.0.0-beta6)
   - MLKitBarcodeScanning (6.0.0):
     - MLKitCommon (~> 12.0)
@@ -82,11 +87,13 @@ PODS:
 
 DEPENDENCIES:
   - app_links (from `.symlinks/plugins/app_links/ios`)
+  - audio_session (from `.symlinks/plugins/audio_session/ios`)
   - barcode_scan2 (from `.symlinks/plugins/barcode_scan2/ios`)
   - camera_avfoundation (from `.symlinks/plugins/camera_avfoundation/ios`)
   - Flutter (from `Flutter`)
   - flutter_localization (from `.symlinks/plugins/flutter_localization/ios`)
   - image_picker_ios (from `.symlinks/plugins/image_picker_ios/ios`)
+  - just_audio (from `.symlinks/plugins/just_audio/darwin`)
   - mobile_scanner (from `.symlinks/plugins/mobile_scanner/ios`)
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
   - photo_manager (from `.symlinks/plugins/photo_manager/ios`)
@@ -114,6 +121,8 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   app_links:
     :path: ".symlinks/plugins/app_links/ios"
+  audio_session:
+    :path: ".symlinks/plugins/audio_session/ios"
   barcode_scan2:
     :path: ".symlinks/plugins/barcode_scan2/ios"
   camera_avfoundation:
@@ -124,6 +133,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/flutter_localization/ios"
   image_picker_ios:
     :path: ".symlinks/plugins/image_picker_ios/ios"
+  just_audio:
+    :path: ".symlinks/plugins/just_audio/darwin"
   mobile_scanner:
     :path: ".symlinks/plugins/mobile_scanner/ios"
   path_provider_foundation:
@@ -140,6 +151,10 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/url_launcher_ios/ios"
 
 SPEC CHECKSUMS:
+  app_links: f3e17e4ee5e357b39d8b95290a9b2c299fca71c6
+  audio_session: 19e9480dbdd4e5f6c4543826b2e8b0e4ab6145fe
+  barcode_scan2: 0af2bb63c81b4565aab6cd78278e4c0fa136dbb0
+  camera_avfoundation: dd002b0330f4981e1bbcb46ae9b62829237459a4
   app_links: 76b66b60cc809390ca1ad69bfd66b998d2387ac7
   barcode_scan2: f80517f040989095c9b5067be77649bf6114442c
   camera_avfoundation: 04b44aeb14070126c6529e5ab82cc7c9fca107cf
@@ -150,6 +165,8 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: d1a2cbf009c453f4d6ded37c105e2f67a32206d8
   GoogleUtilities: 26a3abef001b6533cf678d3eb38fd3f614b7872d
   GTMSessionFetcher: 5aea5ba6bd522a239e236100971f10cb71b96ab6
+  image_picker_ios: c560581cceedb403a6ff17f2f816d7fea1421fc1
+  just_audio: a42c63806f16995daf5b219ae1d679deb76e6a79
   image_picker_ios: 7fe1ff8e34c1790d6fff70a32484959f563a928a
   MLImage: 0ad1c5f50edd027672d8b26b0fee78a8b4a0fc56
   MLKitBarcodeScanning: 0a3064da0a7f49ac24ceb3cb46a5bc67496facd2

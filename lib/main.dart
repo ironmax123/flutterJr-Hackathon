@@ -4,6 +4,7 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:room_check/primary/utils/color.dart';
 import 'package:room_check/routers/router.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -20,6 +21,12 @@ Future<void> main() async {
 Future<void> mainCommonMethod() async {
   WidgetsFlutterBinding.ensureInitialized();
   timeAgo.setLocaleMessages('ja', timeAgo.JaMessages());
+  try {
+    await AudioPlayer.clearAssetCache();
+  } catch (e) {
+    debugPrint('No cache to delete.');
+    debugPrint("Error: $e");
+  }
   await dotenv.load(fileName: '.env');
   final String url = dotenv.env['URL']!;
   final String anonkey = dotenv.env['ANON_KEY']!;

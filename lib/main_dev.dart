@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         scaffoldBackgroundColor: AppColor.primaryWhite,
       ),
-      home: const PostsScreen(),
+      home: const InvitationScreen(),
     );
   }
 }
