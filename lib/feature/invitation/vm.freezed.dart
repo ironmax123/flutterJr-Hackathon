@@ -17,7 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$InvitationState {
   UserEntity? get userEntity => throw _privateConstructorUsedError;
-  List<FriendEntity>? get friendEntity => throw _privateConstructorUsedError;
+  FriendEntity? get friendEntity => throw _privateConstructorUsedError;
 
   /// Create a copy of InvitationState
   /// with the given fields replaced by the non-null parameter values.
@@ -32,9 +32,10 @@ abstract class $InvitationStateCopyWith<$Res> {
           InvitationState value, $Res Function(InvitationState) then) =
       _$InvitationStateCopyWithImpl<$Res, InvitationState>;
   @useResult
-  $Res call({UserEntity? userEntity, List<FriendEntity>? friendEntity});
+  $Res call({UserEntity? userEntity, FriendEntity? friendEntity});
 
   $UserEntityCopyWith<$Res>? get userEntity;
+  $FriendEntityCopyWith<$Res>? get friendEntity;
 }
 
 /// @nodoc
@@ -63,7 +64,7 @@ class _$InvitationStateCopyWithImpl<$Res, $Val extends InvitationState>
       friendEntity: freezed == friendEntity
           ? _value.friendEntity
           : friendEntity // ignore: cast_nullable_to_non_nullable
-              as List<FriendEntity>?,
+              as FriendEntity?,
     ) as $Val);
   }
 
@@ -80,6 +81,20 @@ class _$InvitationStateCopyWithImpl<$Res, $Val extends InvitationState>
       return _then(_value.copyWith(userEntity: value) as $Val);
     });
   }
+
+  /// Create a copy of InvitationState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $FriendEntityCopyWith<$Res>? get friendEntity {
+    if (_value.friendEntity == null) {
+      return null;
+    }
+
+    return $FriendEntityCopyWith<$Res>(_value.friendEntity!, (value) {
+      return _then(_value.copyWith(friendEntity: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -90,10 +105,12 @@ abstract class _$$InvitationStateImplCopyWith<$Res>
       __$$InvitationStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({UserEntity? userEntity, List<FriendEntity>? friendEntity});
+  $Res call({UserEntity? userEntity, FriendEntity? friendEntity});
 
   @override
   $UserEntityCopyWith<$Res>? get userEntity;
+  @override
+  $FriendEntityCopyWith<$Res>? get friendEntity;
 }
 
 /// @nodoc
@@ -118,9 +135,9 @@ class __$$InvitationStateImplCopyWithImpl<$Res>
           : userEntity // ignore: cast_nullable_to_non_nullable
               as UserEntity?,
       friendEntity: freezed == friendEntity
-          ? _value._friendEntity
+          ? _value.friendEntity
           : friendEntity // ignore: cast_nullable_to_non_nullable
-              as List<FriendEntity>?,
+              as FriendEntity?,
     ));
   }
 }
@@ -129,21 +146,12 @@ class __$$InvitationStateImplCopyWithImpl<$Res>
 
 class _$InvitationStateImpl implements _InvitationState {
   const _$InvitationStateImpl(
-      {required this.userEntity,
-      required final List<FriendEntity>? friendEntity})
-      : _friendEntity = friendEntity;
+      {required this.userEntity, required this.friendEntity});
 
   @override
   final UserEntity? userEntity;
-  final List<FriendEntity>? _friendEntity;
   @override
-  List<FriendEntity>? get friendEntity {
-    final value = _friendEntity;
-    if (value == null) return null;
-    if (_friendEntity is EqualUnmodifiableListView) return _friendEntity;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
+  final FriendEntity? friendEntity;
 
   @override
   String toString() {
@@ -157,13 +165,12 @@ class _$InvitationStateImpl implements _InvitationState {
             other is _$InvitationStateImpl &&
             (identical(other.userEntity, userEntity) ||
                 other.userEntity == userEntity) &&
-            const DeepCollectionEquality()
-                .equals(other._friendEntity, _friendEntity));
+            (identical(other.friendEntity, friendEntity) ||
+                other.friendEntity == friendEntity));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, userEntity,
-      const DeepCollectionEquality().hash(_friendEntity));
+  int get hashCode => Object.hash(runtimeType, userEntity, friendEntity);
 
   /// Create a copy of InvitationState
   /// with the given fields replaced by the non-null parameter values.
@@ -178,12 +185,12 @@ class _$InvitationStateImpl implements _InvitationState {
 abstract class _InvitationState implements InvitationState {
   const factory _InvitationState(
       {required final UserEntity? userEntity,
-      required final List<FriendEntity>? friendEntity}) = _$InvitationStateImpl;
+      required final FriendEntity? friendEntity}) = _$InvitationStateImpl;
 
   @override
   UserEntity? get userEntity;
   @override
-  List<FriendEntity>? get friendEntity;
+  FriendEntity? get friendEntity;
 
   /// Create a copy of InvitationState
   /// with the given fields replaced by the non-null parameter values.

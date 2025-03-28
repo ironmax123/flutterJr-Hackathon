@@ -14,7 +14,7 @@ part "vm.freezed.dart";
 class InvitationState with _$InvitationState {
   const factory InvitationState({
     required UserEntity? userEntity,
-    required List<FriendEntity>? friendEntity,
+    required FriendEntity? friendEntity,
   }) = _InvitationState;
 }
 
@@ -66,16 +66,42 @@ class InvitationSCreenVM extends _$InvitationSCreenVM {
     );
   }
 
-  void addFriend(String userId) async {
+  void addFriend(String userId, String myId) async {
     final friendRepo = ref.read(friendRepoProvider);
+
+    // データベースに友達を追加
     await friendRepo.addUsers(userId);
 
+    // 現在の状態を取得
     if (state.value != null) {
-      final updatedFriends =
-          List<FriendEntity>.from(state.value!.friendEntity ?? []);
-      updatedFriends.add(FriendEntity(
-          id: userId, friends: [])); // Provide the required 'friends' parameter
-      state = AsyncData(state.value!.copyWith(friendEntity: updatedFriends));
+      final currentFriends = state.value!.friendEntity?.friends ?? [];
+
+      // 新しい友達をリストに追加
+      final updatedFriends = [
+        ...currentFriends,
+        userId, // 新しい userId を追加
+      ];
+
+      // 状態を更新
+      state = AsyncValue.data(state.value!.copyWith(
+        friendEntity:
+            state.value!.friendEntity?.copyWith(friends: updatedFriends),
+      ));
+    }
+  }
+
+  void refresh() async {
+    final friendRepo = ref.read(friendRepoProvider);
+    final friendsRead = await friendRepo.readFriend();
+    final friendsValue =
+        switch (friendsRead) { Ok(:final value) => value, Error() => null };
+
+    if (state.value != null) {
+      // 状態を更新
+      state = AsyncValue.data(state.value!.copyWith(
+          friendEntity: state.value!.friendEntity?.copyWith(
+        friends: friendsValue != null ? friendsValue.friends : [],
+      )));
     }
   }
 

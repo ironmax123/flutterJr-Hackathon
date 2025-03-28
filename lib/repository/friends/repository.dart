@@ -36,21 +36,20 @@ class FriendRepo {
   final Ref _ref;
   final FriendService _friendService;
 
-  Future<Result<List<FriendEntity>>> readFriend(
+  Future<Result<FriendEntity>> readFriend(
       {bool shouldRefresh = false, String? userId}) async {
     final cacheData = _ref.read(friendRepoCasheProvider)[userId];
     final useCache = !shouldRefresh && cacheData != null;
     if (useCache) {
-      return Result.ok([cacheData]);
+      return Result.ok(cacheData);
     }
     final result = await _friendService.read();
     // final socket = await _postService.socket();
 
     switch (result) {
       case Ok(:final value):
-        for (var user in value) {
-          _ref.read(friendRepoCasheProvider.notifier).update(user.id, user);
-        }
+        _ref.read(friendRepoCasheProvider.notifier).update(value.id, value);
+
         return Result.ok(value);
       case Error():
         return Result.error(result.error);

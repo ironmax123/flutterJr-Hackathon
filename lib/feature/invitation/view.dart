@@ -44,7 +44,7 @@ class InvitationScreen extends HookConsumerWidget {
           },
         );
     final friendsId = ref.watch(invitationSCreenVMProvider).when(
-          data: (data) => data.friendEntity?.first.friends,
+          data: (data) => data.friendEntity?.friends,
           loading: () => '読み込み中...',
           error: (err, stack) {
             log('エラー: $err');
@@ -103,26 +103,31 @@ class InvitationScreen extends HookConsumerWidget {
           )
         ],
       ),
-      body: ListView(
-        children: [
-          InvationScreenProfile(
-            imageUrl: iconUrl,
-            userName: userName,
-          ),
-          const Divider(
-            color: AppColor.dividerColor,
-          ),
-          InvitationScreenFriendList(
-            friendList: friendList.value,
-          ),
-          const Divider(
-            color: AppColor.dividerColor,
-          ),
-          InvitationScreenAddFriend(
-            uid: uid.value,
-            name: userName,
-          ),
-        ],
+      body: RefreshIndicator(
+        onRefresh: () async {
+          ref.read(invitationSCreenVMProvider.notifier).refresh();
+        },
+        child: ListView(
+          children: [
+            InvationScreenProfile(
+              imageUrl: iconUrl,
+              userName: userName,
+            ),
+            const Divider(
+              color: AppColor.dividerColor,
+            ),
+            InvitationScreenFriendList(
+              friendList: friendList.value,
+            ),
+            const Divider(
+              color: AppColor.dividerColor,
+            ),
+            InvitationScreenAddFriend(
+              uid: uid.value,
+              name: userName,
+            ),
+          ],
+        ),
       ),
     );
   }
