@@ -7,6 +7,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:room_check/feature/invitation/components/add_friend.dart';
 import 'package:room_check/feature/invitation/components/dialog.dart';
 import 'package:room_check/feature/invitation/components/friend_list.dart';
+import 'package:room_check/feature/invitation/components/join_friend.dart';
 import 'package:room_check/feature/invitation/components/user_info.dart';
 import 'package:room_check/feature/invitation/vm.dart';
 import 'package:room_check/primary/utils/color.dart';
@@ -52,7 +53,6 @@ class InvitationScreen extends HookConsumerWidget {
           },
         );
 
-    print(friendsId);
     final friendIdsList = useState<List<String>>([]);
 
     final friendList = useState<List<String>>([]);
@@ -125,6 +125,11 @@ class InvitationScreen extends HookConsumerWidget {
               color: AppColor.dividerColor,
             ),
             InvitationScreenAddFriend(
+              uid: uid.value,
+              name: userName,
+            ),
+            const Divider(color: AppColor.dividerColor),
+            InvationScreenJoinFriend(
               uid: uid.value,
               name: userName,
             ),
