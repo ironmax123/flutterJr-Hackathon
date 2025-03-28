@@ -159,6 +159,7 @@ abstract class _PostsScreenState implements PostsScreenState {
 mixin _$UserInfo {
   String? get imageUrl => throw _privateConstructorUsedError;
   String? get userName => throw _privateConstructorUsedError;
+  String? get userId => throw _privateConstructorUsedError;
 
   /// Create a copy of UserInfo
   /// with the given fields replaced by the non-null parameter values.
@@ -172,7 +173,7 @@ abstract class $UserInfoCopyWith<$Res> {
   factory $UserInfoCopyWith(UserInfo value, $Res Function(UserInfo) then) =
       _$UserInfoCopyWithImpl<$Res, UserInfo>;
   @useResult
-  $Res call({String? imageUrl, String? userName});
+  $Res call({String? imageUrl, String? userName, String? userId});
 }
 
 /// @nodoc
@@ -192,6 +193,7 @@ class _$UserInfoCopyWithImpl<$Res, $Val extends UserInfo>
   $Res call({
     Object? imageUrl = freezed,
     Object? userName = freezed,
+    Object? userId = freezed,
   }) {
     return _then(_value.copyWith(
       imageUrl: freezed == imageUrl
@@ -201,6 +203,10 @@ class _$UserInfoCopyWithImpl<$Res, $Val extends UserInfo>
       userName: freezed == userName
           ? _value.userName
           : userName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      userId: freezed == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
   }
@@ -214,7 +220,7 @@ abstract class _$$UserInfoImplCopyWith<$Res>
       __$$UserInfoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? imageUrl, String? userName});
+  $Res call({String? imageUrl, String? userName, String? userId});
 }
 
 /// @nodoc
@@ -232,6 +238,7 @@ class __$$UserInfoImplCopyWithImpl<$Res>
   $Res call({
     Object? imageUrl = freezed,
     Object? userName = freezed,
+    Object? userId = freezed,
   }) {
     return _then(_$UserInfoImpl(
       imageUrl: freezed == imageUrl
@@ -242,6 +249,10 @@ class __$$UserInfoImplCopyWithImpl<$Res>
           ? _value.userName
           : userName // ignore: cast_nullable_to_non_nullable
               as String?,
+      userId: freezed == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -249,16 +260,19 @@ class __$$UserInfoImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$UserInfoImpl implements _UserInfo {
-  const _$UserInfoImpl({required this.imageUrl, required this.userName});
+  const _$UserInfoImpl(
+      {required this.imageUrl, required this.userName, required this.userId});
 
   @override
   final String? imageUrl;
   @override
   final String? userName;
+  @override
+  final String? userId;
 
   @override
   String toString() {
-    return 'UserInfo(imageUrl: $imageUrl, userName: $userName)';
+    return 'UserInfo(imageUrl: $imageUrl, userName: $userName, userId: $userId)';
   }
 
   @override
@@ -269,11 +283,12 @@ class _$UserInfoImpl implements _UserInfo {
             (identical(other.imageUrl, imageUrl) ||
                 other.imageUrl == imageUrl) &&
             (identical(other.userName, userName) ||
-                other.userName == userName));
+                other.userName == userName) &&
+            (identical(other.userId, userId) || other.userId == userId));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, imageUrl, userName);
+  int get hashCode => Object.hash(runtimeType, imageUrl, userName, userId);
 
   /// Create a copy of UserInfo
   /// with the given fields replaced by the non-null parameter values.
@@ -287,12 +302,15 @@ class _$UserInfoImpl implements _UserInfo {
 abstract class _UserInfo implements UserInfo {
   const factory _UserInfo(
       {required final String? imageUrl,
-      required final String? userName}) = _$UserInfoImpl;
+      required final String? userName,
+      required final String? userId}) = _$UserInfoImpl;
 
   @override
   String? get imageUrl;
   @override
   String? get userName;
+  @override
+  String? get userId;
 
   /// Create a copy of UserInfo
   /// with the given fields replaced by the non-null parameter values.

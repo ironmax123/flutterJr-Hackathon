@@ -119,6 +119,7 @@ class InvitationScreen extends HookConsumerWidget {
             ),
             InvitationScreenFriendList(
               friendList: friendList.value,
+              friendIdList: friendIdsList.value,
             ),
             const Divider(
               color: AppColor.dividerColor,

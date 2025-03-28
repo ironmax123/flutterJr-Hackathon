@@ -20,6 +20,7 @@ class UserInfo with _$UserInfo {
   const factory UserInfo({
     required String? imageUrl,
     required String? userName,
+    required String? userId,
   }) = _UserInfo;
 }
 
@@ -46,11 +47,13 @@ class PostsScreenVM extends _$PostsScreenVM {
         return UserInfo(
           imageUrl: value.first.avatar_url,
           userName: value.first.username,
+          userId: value.first.id,
         );
       case Error():
         return const UserInfo(
           imageUrl: null,
           userName: 'ユーザー情報の取得に失敗しました',
+          userId: null,
         );
     }
   }

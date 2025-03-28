@@ -7,6 +7,7 @@ import 'package:room_check/feature/login/page.dart';
 import 'package:room_check/feature/login_check.dart';
 import 'package:room_check/feature/posts/view.dart';
 import 'package:room_check/feature/sign_up/page.dart';
+import 'package:room_check/feature/userposts/view.dart';
 
 GoRouter goRouter(List<CameraDescription> cameras) {
   return GoRouter(
@@ -71,6 +72,17 @@ GoRouter goRouter(List<CameraDescription> cameras) {
           return MaterialPage(
             key: state.pageKey,
             child: const PostsScreen(),
+          );
+        },
+      ),
+      GoRoute(
+        path: '/userposts',
+        name: 'userposts',
+        pageBuilder: (context, state,) {
+          final userId = state.extra as String;
+          return MaterialPage(
+            key: state.pageKey,
+            child: UserPostsScreen(userId: userId),
           );
         },
       ),

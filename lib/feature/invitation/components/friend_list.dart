@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 import 'package:room_check/primary/utils/color.dart';
 
 class InvitationScreenFriendList extends StatelessWidget {
   final List<String>? friendList;
-  const InvitationScreenFriendList({super.key, required this.friendList});
+  final List<String>? friendIdList;
+  const InvitationScreenFriendList(
+      {super.key, required this.friendList, required this.friendIdList});
 
   @override
   Widget build(BuildContext context) {
@@ -38,11 +41,15 @@ class InvitationScreenFriendList extends StatelessWidget {
                     return Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          friendList![index],
-                          style: const TextStyle(
-                            color: AppColor.primaryBlack,
-                            fontSize: 16,
+                        GestureDetector(
+                          onTap: () => context.push('/userposts',
+                              extra: friendIdList![index]),
+                          child: Text(
+                            friendList![index],
+                            style: const TextStyle(
+                              color: AppColor.primaryBlack,
+                              fontSize: 16,
+                            ),
                           ),
                         ),
                         const Gap(8),
