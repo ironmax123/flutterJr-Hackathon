@@ -9,6 +9,7 @@ import 'package:room_check/feature/invitation/vm.dart';
 import 'package:room_check/primary/components/gradient_button.dart';
 import 'package:room_check/primary/utils/color.dart';
 import 'package:room_check/primary/utils/gradient_style.dart';
+import 'package:room_check/supabase/supabase.dart';
 import 'package:share_plus/share_plus.dart';
 
 class InvitationScreenAddFriend extends HookConsumerWidget {
@@ -58,9 +59,10 @@ class InvitationScreenAddFriend extends HookConsumerWidget {
               gradient: GradientStyle.pinkGradient,
               text: '参加する',
               onPressed: () async {
-                ref
-                    .read(invitationSCreenVMProvider.notifier)
-                    .addFriend(controller.value.text);
+                ref.read(invitationSCreenVMProvider.notifier).addFriend(
+                      controller.value.text,
+                      user!.id,
+                    );
                 controller.clear();
               },
             ),

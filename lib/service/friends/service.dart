@@ -71,14 +71,15 @@ class FriendService {
   }
 
   /// 投稿をsupabaseから取得
-  Future<Result<List<FriendEntity>>> read() async {
+  Future<Result<FriendEntity>> read() async {
     final uid = user!.id;
 
     final List<Map<String, dynamic>> response =
         await supabase.from('friend').select().eq('id', uid);
     try {
-      return Result.ok(
-          response.map((data) => FriendEntity.fromJson(data)).toList());
+      return Result.ok(FriendEntity(id: response.first.keys.first, friends: [
+        ...response.map((data) => FriendEntity.fromJson(data).friends).expand((friends) => friends).whereType<String>()
+      ]));
     } catch (e) {
       return Result.error(Exception(e));
     }

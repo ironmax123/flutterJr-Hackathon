@@ -44,7 +44,7 @@ class InvitationScreen extends HookConsumerWidget {
           },
         );
     final friendsId = ref.watch(invitationSCreenVMProvider).when(
-          data: (data) => data.friendEntity?.first.friends,
+          data: (data) => data.friendEntity?.friends,
           loading: () => '読み込み中...',
           error: (err, stack) {
             log('エラー: $err');
