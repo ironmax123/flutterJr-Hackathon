@@ -98,7 +98,7 @@ class ImvationFriend extends StatelessWidget {
     return Row(
       children: [
         const Text(
-          '参加する',
+          'ともだちを追加する',
           style: TextStyle(
             color: AppColor.primaryBlack,
             fontSize: 24,
