@@ -1,6 +1,6 @@
 # ピカトモ
-アーキテクチャ: MVVM+repository
-バックエンド：
+アーキテクチャ: MVVM+repository</br>
+バックエンド：<img src='https://github.com/user-attachments/assets/a1d87e5a-ecbe-4c67-ba21-da1af5f4f8d4' width=10%>
 
 # アプリについて
 ※画像は開発段階を含みます
